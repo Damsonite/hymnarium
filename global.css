@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .title {
-  @apply font-lxmedium mb-4 text-xl;
+  @apply font-lxmedium text-text mb-4 text-xl;
 }

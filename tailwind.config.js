@@ -4,6 +4,11 @@ module.exports = {
 
   presets: [require('nativewind/preset')],
   theme: {
+    colors: {
+      primary: 'var(--color-primary',
+      text: 'var(--color-text)',
+      background: 'var(--color-background)',
+    },
     extend: {
       fontFamily: {
         lxregular: ['Lexend-Regular', 'sans-serif'],
