@@ -5,12 +5,12 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'nativewind';
 import { useEffect } from 'react';
-import Theme from '~/components/Theme';
+import Theme from '~/components/shared/Theme';
 import { colors } from '~/utils/color';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function Layout() {
+export default function RootLayout() {
   const [loaded, error] = useFonts({
     'Lexend-Regular': require('~/assets/fonts/Lexend-Regular.ttf'),
     'Lexend-Medium': require('~/assets/fonts/Lexend-Medium.ttf'),
@@ -43,7 +43,7 @@ export default function Layout() {
           headerShadowVisible: false,
         }}>
         <Stack.Screen
-          name="index"
+          name="(tabs)"
           options={{
             title: 'Hymnarium',
             headerTitleStyle: {

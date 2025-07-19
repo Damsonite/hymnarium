@@ -5,9 +5,10 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     colors: {
-      primary: 'var(--color-primary',
+      primary: 'var(--color-primary)',
       text: 'var(--color-text)',
       background: 'var(--color-background)',
+      surface: 'var(--color-surface)',
     },
     extend: {
       fontFamily: {
