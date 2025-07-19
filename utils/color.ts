@@ -35,3 +35,12 @@ export const themes = {
     '--color-surface': colors.dark.surface,
   }),
 };
+
+export const withOpacity = (color: Color, opacity: number, mode: 'light' | 'dark') => {
+  const hex = colors[mode][color];
+  const alpha = Math.round(opacity * 255)
+    .toString(16)
+    .padStart(2, '0');
+
+  return hex + alpha;
+};

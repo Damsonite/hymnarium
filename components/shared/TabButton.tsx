@@ -2,7 +2,7 @@ import { TabTriggerSlotProps } from 'expo-router/ui';
 import { Ref, forwardRef } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-import { Icon, IconName } from '~/components/shared/Icon';
+import Icon, { IconName } from '~/components/shared/Icon';
 
 export type TabButtonProps = TabTriggerSlotProps & {
   icon: IconName;

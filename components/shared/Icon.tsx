@@ -11,7 +11,7 @@ interface IconProps {
   color?: Color | string;
 }
 
-export const Icon = ({ name, size = 24, color = 'text' }: IconProps) => {
+const Icon = ({ name, size = 24, color = 'text' }: IconProps) => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
@@ -64,3 +64,5 @@ export const Icon = ({ name, size = 24, color = 'text' }: IconProps) => {
 
   return <FontAwesome name="question" size={size} color={finalColor} />;
 };
+
+export default Icon;
