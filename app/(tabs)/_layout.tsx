@@ -7,19 +7,19 @@ export default function TabsLayout() {
       <TabSlot />
       <TabList className="bg-surface/90 border-surface h-32 border-t-[1px]">
         <TabTrigger name="index" href="/" asChild>
-          <TabButton label="Biblioteca" />
+          <TabButton icon="list" label="Biblioteca" />
         </TabTrigger>
 
         <TabTrigger name="search" href="/search" asChild>
-          <TabButton label="Buscar" />
+          <TabButton icon="search" label="Buscar" />
         </TabTrigger>
 
         <TabTrigger name="favorites" href="/favorites" asChild>
-          <TabButton label="Favoritos" />
+          <TabButton icon="heart" label="Favoritos" />
         </TabTrigger>
 
         <TabTrigger name="settings" href="/settings" asChild>
-          <TabButton label="Ajustes" />
+          <TabButton icon="cog" label="Ajustes" />
         </TabTrigger>
       </TabList>
     </Tabs>

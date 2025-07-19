@@ -5,7 +5,7 @@ export const colors = {
     primary: '#0364A0',
     text: '#003A5E',
     background: '#FCFDFD',
-    surface: '#F8F9FA',
+    surface: '#E2E6EA',
   },
   dark: {
     primary: '#4FB7F8',
@@ -14,6 +14,8 @@ export const colors = {
     surface: '#1A2B36',
   },
 };
+
+export type Color = keyof typeof colors.light | keyof typeof colors.dark;
 
 export const themes = {
   light: vars({
