@@ -6,7 +6,7 @@ export default function TabsLayout() {
     <Tabs>
       <TabSlot />
       <TabList className="bg-surface/90 border-surface h-32 border-t-[1px]">
-        <TabTrigger name="index" href="/" asChild>
+        <TabTrigger name="(library)" href="/" asChild>
           <TabButton icon="list" label="Biblioteca" />
         </TabTrigger>
 

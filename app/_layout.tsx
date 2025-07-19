@@ -18,7 +18,7 @@ export default function RootLayout() {
   });
 
   const { colorScheme } = useColorScheme();
-  const mode = colorScheme === 'dark' ? 'dark' : 'light';
+  const mode = colorScheme ?? 'light';
 
   useEffect(() => {
     if (loaded || error) {
