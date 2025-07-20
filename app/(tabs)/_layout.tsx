@@ -13,7 +13,7 @@ export default function TabsLayout() {
       <TabSlot />
       <TabList
         className="bg-surface border-surface h-32 border-t-[1px]"
-        style={{ backgroundColor: withOpacity('surface', 0.8, mode) }}>
+        style={{ backgroundColor: withOpacity('surface', 0.4, mode) }}>
         <TabTrigger name="(library)" href="/" asChild>
           <TabButton icon="list" label="Biblioteca" />
         </TabTrigger>
