@@ -14,5 +14,4 @@ export interface Hymn {
   text: string;
   author_name: string;
   is_favorite?: boolean;
-  type?: 'hymn';
 }

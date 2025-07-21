@@ -26,12 +26,12 @@ function StackNavigator() {
           backgroundColor: colors[mode].background,
         },
         headerTintColor: colors[mode].primary,
-        headerShadowVisible: false,
         contentStyle: {
           backgroundColor: colors[mode].background,
         },
         animation: 'slide_from_right',
         animationDuration: 200,
+        headerShadowVisible: false,
       }}>
       <Stack.Screen
         name="(tabs)"
