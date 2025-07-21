@@ -3,6 +3,7 @@ import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
+import PlayerContainer from '~/components/shared/PlayerContainer';
 import { getHymn } from '~/db/hymns';
 import { Hymn } from '~/types/hymn';
 
@@ -23,6 +24,8 @@ export default function HymnScreen() {
   return (
     <View className="flex-1">
       <ScrollView className="p-6" contentContainerClassName="pb-16">
+        <Text className="mb-4 text-right font-lxmedium text-text opacity-60">{data?.verse}</Text>
+
         <Text
           className="font-lxregular text-3xl text-text"
           style={{
@@ -31,6 +34,8 @@ export default function HymnScreen() {
           {data?.text}
         </Text>
       </ScrollView>
+
+      {data && <PlayerContainer data={data} />}
     </View>
   );
 }

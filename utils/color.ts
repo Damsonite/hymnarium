@@ -9,6 +9,7 @@ export const colors = {
     muted: '#A0B2C3',
     background: '#FCFDFD',
     surface: '#E2E6EA',
+    grey: '#F5F6F7',
     confirm: '#3CB371',
   },
   dark: {
@@ -19,6 +20,7 @@ export const colors = {
     muted: '#A0B2C3',
     background: '#0B1C26',
     surface: '#1A2B36',
+    grey: '#2C3A4B',
     confirm: '#3CB371',
   },
 };
@@ -34,6 +36,7 @@ export const themes = {
     '--color-muted': colors.light.muted,
     '--color-background': colors.light.background,
     '--color-surface': colors.light.surface,
+    '--color-grey': colors.light.grey,
     '--color-confirm': colors.light.confirm,
   }),
   dark: vars({
@@ -44,15 +47,7 @@ export const themes = {
     '--color-muted': colors.dark.muted,
     '--color-background': colors.dark.background,
     '--color-surface': colors.dark.surface,
+    '--color-grey': colors.dark.grey,
     '--color-confirm': colors.dark.confirm,
   }),
-};
-
-export const withOpacity = (color: Color, opacity: number, mode: 'light' | 'dark') => {
-  const hex = colors[mode][color];
-  const alpha = Math.round(opacity * 255)
-    .toString(16)
-    .padStart(2, '0');
-
-  return hex + alpha;
 };

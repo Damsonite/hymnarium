@@ -6,6 +6,10 @@
   @apply flex flex-1 bg-background p-6 pb-0;
 }
 
+.surface {
+  @apply border-grey border-t-[1px] bg-surface shadow-lg;
+}
+
 .title {
   @apply font-lxmedium text-xl text-text;
 }
