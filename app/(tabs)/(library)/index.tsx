@@ -11,7 +11,7 @@ export default function Hymns() {
     <Container>
       <ListHeader title="Select a hymn" isAscending={isAscending} setIsAscending={setIsAscending} />
 
-      <HymnList />
+      <HymnList isAscending={isAscending} />
     </Container>
   );
 }

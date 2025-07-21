@@ -24,15 +24,17 @@ export default function BaseList<T>({
   };
 
   return (
-    <FlashList
-      data={data}
-      renderItem={renderItem}
-      estimatedItemSize={64}
-      contentContainerClassName="pt-4 pb-8"
-      numColumns={numColumns}
-      keyboardDismissMode="on-drag"
-      ListEmptyComponent={ListEmpty}
-      showsVerticalScrollIndicator={false}
-    />
+    <View className="flex-1">
+      <FlashList
+        data={data}
+        renderItem={renderItem}
+        estimatedItemSize={64}
+        contentContainerClassName="pt-4 pb-8"
+        numColumns={numColumns}
+        keyboardDismissMode="on-drag"
+        ListEmptyComponent={ListEmpty}
+        showsVerticalScrollIndicator={false}
+      />
+    </View>
   );
 }

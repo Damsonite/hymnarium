@@ -4,7 +4,11 @@ import { Hymn } from '~/types/hymn';
 
 export type Language = 'es' | 'en';
 
-export const getHymns = async (db: SQLiteDatabase, language: Language) => {
+export const getHymns = async (
+  db: SQLiteDatabase,
+  language: Language,
+  isAscending: boolean = true
+) => {
   try {
     let sql = `
       SELECT h.id, h.author_id, h.has_track, h.has_demo, ht.title, a.name AS author_name, 'hymn' AS type
@@ -12,6 +16,9 @@ export const getHymns = async (db: SQLiteDatabase, language: Language) => {
       LEFT JOIN authors a ON h.author_id = a.id
       JOIN hymn_translations ht ON h.id = ht.hymn_id AND ht.language = ?
     `;
+
+    // Add ordering
+    sql += ' ORDER BY ht.title ' + (isAscending ? 'ASC' : 'DESC');
 
     const params: string[] = [language];
 

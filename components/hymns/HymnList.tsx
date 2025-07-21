@@ -5,18 +5,22 @@ import BaseList from '~/components/shared/BaseList';
 import { getHymns } from '~/db/hymns';
 import { Hymn } from '~/types/hymn';
 
-export default function HymnList() {
+interface HymnListProps {
+  isAscending?: boolean;
+}
+
+export default function HymnList({ isAscending }: HymnListProps) {
   const db = useSQLiteContext();
   const [data, setData] = useState<Hymn[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getHymns(db, 'en');
+      const result = await getHymns(db, 'en', isAscending);
       setData(result);
     };
 
     fetchData();
-  }, [db]);
+  }, [db, isAscending]);
 
   return (
     <BaseList
