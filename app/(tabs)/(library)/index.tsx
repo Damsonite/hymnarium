@@ -1,17 +1,17 @@
 import { useState } from 'react';
+import { View } from 'react-native';
 import HymnList from '~/components/hymns/HymnList';
 
-import { Container } from '~/components/shared/Container';
 import ListHeader from '~/components/shared/ListHeader';
 
 export default function Hymns() {
   const [isAscending, setIsAscending] = useState(true);
 
   return (
-    <Container>
+    <View className="container">
       <ListHeader title="Select a hymn" isAscending={isAscending} setIsAscending={setIsAscending} />
 
       <HymnList isAscending={isAscending} />
-    </Container>
+    </View>
   );
 }

@@ -1,11 +1,9 @@
-import { Text } from 'react-native';
-
-import { Container } from '~/components/shared/Container';
+import { Text, View } from 'react-native';
 
 export default function Settings() {
   return (
-    <Container>
+    <View className="container">
       <Text>Configuración</Text>
-    </Container>
+    </View>
   );
 }

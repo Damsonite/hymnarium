@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.container {
+  @apply flex flex-1 bg-background p-6 pb-0;
+}
+
 .title {
-  @apply font-lxmedium text-text text-xl;
+  @apply font-lxmedium text-xl text-text;
 }

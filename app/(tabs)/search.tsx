@@ -1,11 +1,9 @@
-import { Text } from 'react-native';
-
-import { Container } from '~/components/shared/Container';
+import { Text, View } from 'react-native';
 
 export default function Search() {
   return (
-    <Container>
+    <View className="container">
       <Text>Buscar</Text>
-    </Container>
+    </View>
   );
 }

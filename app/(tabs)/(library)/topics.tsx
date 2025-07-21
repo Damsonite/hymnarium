@@ -1,12 +1,10 @@
-import { Text } from 'react-native';
-
-import { Container } from '~/components/shared/Container';
+import { Text, View } from 'react-native';
 
 export default function Topics() {
   return (
-    <Container>
+    <View className="container">
       <Text className="title">Selecciona un tema</Text>
       <Text className="text-text">Lista de temas</Text>
-    </Container>
+    </View>
   );
 }
