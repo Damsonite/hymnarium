@@ -40,7 +40,7 @@ export default function BaseItem({
       <View className="flex-1 justify-center gap-2 px-2">
         {/* Title and Favorite Icon */}
         <View className="flex-row items-center justify-between">
-          <Text className="font-lxmedium text-text mr-2 flex-1" numberOfLines={1}>
+          <Text className="mr-2 flex-1 font-lxmedium text-text" numberOfLines={1}>
             {title}
           </Text>
 
@@ -51,7 +51,7 @@ export default function BaseItem({
 
         {/* Subtitle and Tags */}
         <View className="flex-row items-center justify-between">
-          <Text className="font-lxmedium text-primary flex-1 text-sm" numberOfLines={1}>
+          <Text className="flex-1 font-lxmedium text-sm text-primary" numberOfLines={1}>
             {subtitle ? subtitle : ' '}
           </Text>
 
@@ -63,7 +63,7 @@ export default function BaseItem({
                 style={{
                   backgroundColor: colors[mode][tag.color],
                 }}>
-                <Text className="font-lxmedium text-background text-xs">{tag.label}</Text>
+                <Text className="font-lxmedium text-xs text-background">{tag.label}</Text>
               </View>
             ))}
           </View>

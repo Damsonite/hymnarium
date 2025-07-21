@@ -6,7 +6,9 @@ const Theme = ({ children }: { children: React.ReactNode }) => {
   const { colorScheme } = useColorScheme();
 
   return (
-    <View className="flex-1" style={themes[colorScheme === 'dark' ? 'dark' : 'light']}>
+    <View
+      className="flex-1 bg-background"
+      style={themes[colorScheme === 'dark' ? 'dark' : 'light']}>
       {children}
     </View>
   );

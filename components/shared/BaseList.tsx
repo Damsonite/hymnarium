@@ -24,7 +24,7 @@ export default function BaseList<T>({
   };
 
   return (
-    <View className="flex-1">
+    <View className="min-h-48 flex-1">
       <FlashList
         data={data}
         renderItem={renderItem}

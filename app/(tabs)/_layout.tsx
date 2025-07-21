@@ -1,5 +1,6 @@
 import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
 import { useColorScheme } from 'nativewind';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { TabButton } from '~/components/shared/TabButton';
 import { withOpacity } from '~/utils/color';
@@ -7,13 +8,17 @@ import { withOpacity } from '~/utils/color';
 export default function TabsLayout() {
   const { colorScheme } = useColorScheme();
   const mode = colorScheme ?? 'light';
+  const insets = useSafeAreaInsets();
 
   return (
     <Tabs>
       <TabSlot />
       <TabList
-        className="h-32 border-t-[1px] border-surface bg-surface"
-        style={{ backgroundColor: withOpacity('surface', 0.4, mode) }}>
+        className="border-t-[1px] border-surface bg-surface"
+        style={{
+          backgroundColor: withOpacity('surface', 0.4, mode),
+          paddingBottom: insets.bottom,
+        }}>
         <TabTrigger name="(library)" href="/" asChild>
           <TabButton icon="list" label="Library" />
         </TabTrigger>

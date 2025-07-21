@@ -18,22 +18,36 @@ function StackNavigator() {
   return (
     <Stack
       screenOptions={{
+        headerTitleStyle: {
+          fontFamily: 'Lexend-Medium',
+          fontSize: 18,
+        },
         headerStyle: {
           backgroundColor: colors[mode].background,
         },
+        headerTintColor: colors[mode].primary,
+        headerShadowVisible: false,
         contentStyle: {
           backgroundColor: colors[mode].background,
         },
-        headerShadowVisible: false,
+        animation: 'slide_from_right',
+        animationDuration: 200,
       }}>
       <Stack.Screen
         name="(tabs)"
         options={{
           title: 'Hymnarium',
-          headerTitleStyle: {
-            fontFamily: 'Lexend-SemiBold',
-            color: colors[mode].primary,
-          },
+          headerTitleStyle: { fontFamily: 'Lexend-SemiBold', fontSize: 20 },
+        }}
+      />
+
+      <Stack.Screen
+        name="hymns/[id]"
+        options={({ route }) => {
+          const { title } = route.params as any;
+          return {
+            title: title ?? '',
+          };
         }}
       />
     </Stack>
