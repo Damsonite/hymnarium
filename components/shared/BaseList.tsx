@@ -13,12 +13,12 @@ export default function BaseList<T>({
   data,
   renderItem,
   numColumns = 1,
-  emptyMessage = 'No hay datos',
+  emptyMessage = 'No items available',
 }: BaseListProps<T>) {
   const ListEmpty = () => {
     return (
       <View className="flex-1 items-center justify-center p-4">
-        <Text className="font-lxregular text-muted text-center">{emptyMessage}</Text>
+        <Text className="text-center font-lxregular text-muted">{emptyMessage}</Text>
       </View>
     );
   };

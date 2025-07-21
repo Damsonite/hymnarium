@@ -1,10 +1,18 @@
+interface Author {
+  id: number;
+  name: string;
+}
+
 export interface Hymn {
   id: number;
+  author_id: Author['id'];
+  verse?: string;
+  has_track: number;
+  has_demo: number;
+
   title: string;
   text: string;
-  verse?: string;
   author_name: string;
-  has_track: boolean;
-  has_demo: boolean;
   is_favorite?: boolean;
+  type?: 'hymn';
 }

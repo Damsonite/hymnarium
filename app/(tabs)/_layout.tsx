@@ -12,22 +12,22 @@ export default function TabsLayout() {
     <Tabs>
       <TabSlot />
       <TabList
-        className="bg-surface border-surface h-32 border-t-[1px]"
+        className="h-32 border-t-[1px] border-surface bg-surface"
         style={{ backgroundColor: withOpacity('surface', 0.4, mode) }}>
         <TabTrigger name="(library)" href="/" asChild>
-          <TabButton icon="list" label="Biblioteca" />
+          <TabButton icon="list" label="Library" />
         </TabTrigger>
 
         <TabTrigger name="search" href="/search" asChild>
-          <TabButton icon="search" label="Buscar" />
+          <TabButton icon="search" label="Search" />
         </TabTrigger>
 
         <TabTrigger name="favorites" href="/favorites" asChild>
-          <TabButton icon="heart" label="Favoritos" />
+          <TabButton icon="heart" label="Favorites" />
         </TabTrigger>
 
         <TabTrigger name="settings" href="/settings" asChild>
-          <TabButton icon="cog" label="Ajustes" />
+          <TabButton icon="cog" label="Settings" />
         </TabTrigger>
       </TabList>
     </Tabs>

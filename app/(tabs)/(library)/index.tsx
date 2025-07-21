@@ -9,11 +9,7 @@ export default function Hymns() {
 
   return (
     <Container>
-      <ListHeader
-        title="Selecciona un himno"
-        isAscending={isAscending}
-        setIsAscending={setIsAscending}
-      />
+      <ListHeader title="Select a hymn" isAscending={isAscending} setIsAscending={setIsAscending} />
 
       <HymnList />
     </Container>
