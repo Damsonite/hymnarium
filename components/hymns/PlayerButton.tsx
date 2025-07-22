@@ -8,9 +8,15 @@ interface PlayerButtonProps {
   icon: IconName;
   onPress?: () => void;
   shaped?: boolean;
+  active?: boolean;
 }
 
-export default function PlayerButton({ icon, onPress, shaped = false }: PlayerButtonProps) {
+export default function PlayerButton({
+  icon,
+  onPress,
+  shaped = false,
+  active = true,
+}: PlayerButtonProps) {
   const { colorScheme } = useColorScheme();
   const mode = colorScheme ?? 'light';
 
@@ -20,6 +26,7 @@ export default function PlayerButton({ icon, onPress, shaped = false }: PlayerBu
       className="size-20 items-center justify-center rounded-full bg-text pl-1"
       style={{
         backgroundColor: shaped ? colors[mode].text : undefined,
+        opacity: active ? 1 : 0.4,
       }}>
       <Icon name={icon} color={shaped ? 'background' : 'text'} />
     </TouchableOpacity>

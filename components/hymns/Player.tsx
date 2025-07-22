@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 
 import PlayerButton from '~/components/hymns/PlayerButton';
@@ -11,8 +12,35 @@ interface PlayerProps {
 }
 
 export default function Player({ id }: PlayerProps) {
-  const { currentTime, duration, isPlaying, isLoading, handleSlidingComplete, handlePlayPause } =
-    useAudio(id);
+  const router = useRouter();
+  const {
+    currentTime,
+    duration,
+    isPlaying,
+    isLoading,
+    isLooping,
+    isRandomMode,
+    handleSlidingComplete,
+    handlePlayPause,
+    handleNext,
+    handlePrevious,
+    handleToggleLoop,
+    handleToggleRandom,
+  } = useAudio(id);
+
+  const onNext = () => {
+    const nextId = handleNext();
+    if (nextId) {
+      router.push(`/hymns/${nextId}`);
+    }
+  };
+
+  const onPrevious = () => {
+    const prevId = handlePrevious();
+    if (prevId) {
+      router.push(`/hymns/${prevId}`);
+    }
+  };
 
   return (
     <>
@@ -23,13 +51,28 @@ export default function Player({ id }: PlayerProps) {
         isLoading={isLoading}
       />
 
-      <View className="items-center">
+      <>
         {isLoading ? (
           <Loading />
         ) : (
-          <PlayerButton icon={isPlaying ? 'pause' : 'play'} onPress={handlePlayPause} shaped />
+          <View className="mx-2 flex-row items-center justify-center">
+            {/* Random Mode Button */}
+            <PlayerButton icon="random" onPress={handleToggleRandom} active={isRandomMode} />
+
+            {/* Previous Button */}
+            <PlayerButton icon="step-backward" onPress={onPrevious} />
+
+            {/* Play/Pause Button */}
+            <PlayerButton icon={isPlaying ? 'pause' : 'play'} onPress={handlePlayPause} shaped />
+
+            {/* Next Button */}
+            <PlayerButton icon="step-forward" onPress={onNext} />
+
+            {/* Loop Button */}
+            <PlayerButton icon="repeat" onPress={handleToggleLoop} active={isLooping} />
+          </View>
         )}
-      </View>
+      </>
     </>
   );
 }

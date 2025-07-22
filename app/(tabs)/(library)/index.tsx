@@ -9,7 +9,11 @@ export default function Hymns() {
 
   return (
     <View className="container">
-      <ListHeader title="Select a hymn" isAscending={isAscending} setIsAscending={setIsAscending} />
+      <ListHeader
+        title="Select an hymn"
+        isAscending={isAscending}
+        setIsAscending={setIsAscending}
+      />
 
       <HymnList isAscending={isAscending} />
     </View>

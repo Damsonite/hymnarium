@@ -1,6 +1,7 @@
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { useEffect, useState } from 'react';
 
+import { usePlaylistStore } from '~/store/playlist';
 import { Hymn } from '~/types/hymn';
 import { demos } from '~/utils/audioFiles';
 
@@ -12,11 +13,51 @@ export default function useAudio(hymnId: Hymn['id']) {
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const {
+    playlist,
+    setCurrentHymn,
+    initializePlaylist,
+    nextTrack,
+    previousTrack,
+    toggleLoop,
+    toggleRandomMode,
+    isLooping,
+    isRandomMode,
+  } = usePlaylistStore();
+
+  // Initialize playlist if empty
+  useEffect(() => {
+    if (playlist.length === 0) {
+      initializePlaylist();
+    }
+  }, [playlist.length, initializePlaylist]);
+
   useEffect(() => {
     if (status.isLoaded) {
       setIsLoading(false);
     }
   }, [status.isLoaded]);
+
+  useEffect(() => {
+    if (hymnId) {
+      setCurrentHymn(hymnId);
+    }
+  }, [hymnId, setCurrentHymn]);
+
+  // Auto-play next track when current track ends
+  useEffect(() => {
+    if (
+      status.isLoaded &&
+      !status.playing &&
+      status.currentTime > 0 &&
+      status.currentTime >= (status.duration || 0) - 0.1
+    ) {
+      const nextId = nextTrack();
+      if (nextId && nextId !== hymnId) {
+        // Track ended, auto-advance handled by parent component
+      }
+    }
+  }, [status.playing, status.currentTime, status.duration, status.isLoaded, hymnId, nextTrack]);
 
   const handlePlayPause = () => {
     if (isLoading) return;
@@ -38,14 +79,38 @@ export default function useAudio(hymnId: Hymn['id']) {
     }
   };
 
+  const handleNext = () => {
+    const nextId = nextTrack();
+    return nextId;
+  };
+
+  const handlePrevious = () => {
+    const prevId = previousTrack();
+    return prevId;
+  };
+
+  const handleToggleLoop = () => {
+    toggleLoop();
+  };
+
+  const handleToggleRandom = () => {
+    toggleRandomMode();
+  };
+
   if (!audioSource) {
     return {
       currentTime: 0,
       duration: 0,
       isPlaying: false,
       isLoading: false,
+      isLooping,
+      isRandomMode,
       handleSlidingComplete: () => {},
       handlePlayPause: () => {},
+      handleNext: () => null,
+      handlePrevious: () => null,
+      handleToggleLoop: () => {},
+      handleToggleRandom: () => {},
     };
   }
 
@@ -54,7 +119,13 @@ export default function useAudio(hymnId: Hymn['id']) {
     duration: status.duration || 0,
     isPlaying,
     isLoading,
+    isLooping,
+    isRandomMode,
     handleSlidingComplete,
     handlePlayPause,
+    handleNext,
+    handlePrevious,
+    handleToggleLoop,
+    handleToggleRandom,
   };
 }
