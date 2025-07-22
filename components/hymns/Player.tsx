@@ -1,24 +1,35 @@
 import { View } from 'react-native';
 
+import PlayerButton from '~/components/hymns/PlayerButton';
 import TrackBar from '~/components/hymns/TrackBar';
+import Loading from '~/components/shared/Loading';
+import useAudio from '~/hooks/useAudio';
 import { Hymn } from '~/types/hymn';
 
 interface PlayerProps {
-  data?: Hymn | null;
-  isLoading?: boolean;
+  id: Hymn['id'];
 }
 
-export default function Player({ data, isLoading = false }: PlayerProps) {
-  const disabled = isLoading || !data;
+export default function Player({ id }: PlayerProps) {
+  const { currentTime, duration, isPlaying, isLoading, handleSlidingComplete, handlePlayPause } =
+    useAudio(id);
 
   return (
-    <View>
+    <>
       <TrackBar
-        currentTime={0}
-        duration={60}
-        handleSlidingComplete={() => {}}
-        disabled={disabled}
+        currentTime={currentTime}
+        duration={duration}
+        onSlidingComplete={handleSlidingComplete}
+        isLoading={isLoading}
       />
-    </View>
+
+      <View className="items-center">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <PlayerButton icon={isPlaying ? 'pause' : 'play'} onPress={handlePlayPause} shaped />
+        )}
+      </View>
+    </>
   );
 }

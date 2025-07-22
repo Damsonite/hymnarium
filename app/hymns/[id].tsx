@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Player from '~/components/hymns/Player';
 
 import ContentInfo from '~/components/shared/ContentInfo';
+import Loading from '~/components/shared/Loading';
 import useHymn from '~/hooks/useHymn';
 
 export default function HymnScreen() {
@@ -11,13 +12,7 @@ export default function HymnScreen() {
   const { data, isLoading } = useHymn(Number(id));
   const insets = useSafeAreaInsets();
 
-  if (isLoading) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-text">Loading...</Text>
-      </View>
-    );
-  }
+  if (isLoading) return <Loading />;
 
   return (
     <View className="flex-1">
@@ -36,7 +31,7 @@ export default function HymnScreen() {
       <View className="surface mb-2 pt-4 shadow-lg" style={{ paddingBottom: insets.bottom }}>
         <ContentInfo data={data} />
 
-        <Player data={data} isLoading={isLoading} />
+        <Player id={Number(id)} />
       </View>
     </View>
   );
