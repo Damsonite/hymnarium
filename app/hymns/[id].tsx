@@ -1,25 +1,22 @@
 import { useLocalSearchParams } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
-import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import PlayerContainer from '~/components/shared/PlayerContainer';
-import { getHymn } from '~/db/hymns';
-import { Hymn } from '~/types/hymn';
+import ContentInfo from '~/components/shared/ContentInfo';
+import useHymn from '~/hooks/useHymn';
 
 export default function HymnScreen() {
   const { id } = useLocalSearchParams();
-  const db = useSQLiteContext();
-  const [data, setData] = useState<Hymn | null>(null);
+  const { data, isLoading } = useHymn(Number(id));
+  const insets = useSafeAreaInsets();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getHymn(db, Number(id), 'en');
-      setData(result);
-    };
-
-    fetchData();
-  }, [db, id]);
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <Text className="text-text">Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1">
@@ -35,7 +32,9 @@ export default function HymnScreen() {
         </Text>
       </ScrollView>
 
-      {data && <PlayerContainer data={data} />}
+      <View className="surface mb-2 pt-4 shadow-lg" style={{ paddingBottom: insets.bottom }}>
+        <ContentInfo data={data} />
+      </View>
     </View>
   );
 }
