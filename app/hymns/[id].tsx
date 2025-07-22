@@ -1,6 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Player from '~/components/hymns/Player';
 
 import ContentInfo from '~/components/shared/ContentInfo';
 import useHymn from '~/hooks/useHymn';
@@ -34,6 +35,8 @@ export default function HymnScreen() {
 
       <View className="surface mb-2 pt-4 shadow-lg" style={{ paddingBottom: insets.bottom }}>
         <ContentInfo data={data} />
+
+        <Player data={data} isLoading={isLoading} />
       </View>
     </View>
   );
