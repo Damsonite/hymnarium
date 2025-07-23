@@ -29,8 +29,7 @@ function StackNavigator() {
         contentStyle: {
           backgroundColor: colors[mode].background,
         },
-        animation: 'slide_from_right',
-        animationDuration: 200,
+        animation: 'fade',
         headerShadowVisible: false,
       }}>
       <Stack.Screen
@@ -38,16 +37,6 @@ function StackNavigator() {
         options={{
           title: 'Hymnarium',
           headerTitleStyle: { fontFamily: 'Lexend-SemiBold', fontSize: 20 },
-        }}
-      />
-
-      <Stack.Screen
-        name="hymns/[id]"
-        options={({ route }) => {
-          const { title } = route.params as any;
-          return {
-            title: title ?? '',
-          };
         }}
       />
     </Stack>

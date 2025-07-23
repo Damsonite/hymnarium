@@ -13,6 +13,7 @@ interface PlayerProps {
 
 export default function Player({ id }: PlayerProps) {
   const router = useRouter();
+
   const {
     currentTime,
     duration,
@@ -31,14 +32,14 @@ export default function Player({ id }: PlayerProps) {
   const onNext = () => {
     const nextId = handleNext();
     if (nextId) {
-      router.push(`/hymns/${nextId}`);
+      router.replace(`/hymns/${nextId}`);
     }
   };
 
   const onPrevious = () => {
     const prevId = handlePrevious();
     if (prevId) {
-      router.push(`/hymns/${prevId}`);
+      router.replace(`/hymns/${prevId}`);
     }
   };
 

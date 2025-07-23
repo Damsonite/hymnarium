@@ -11,6 +11,7 @@ export const colors = {
     surface: '#E2E6EA',
     grey: '#F5F6F7',
     confirm: '#3CB371',
+    danger: '#E74C3C',
   },
   dark: {
     primary: '#4FB7F8',
@@ -22,6 +23,7 @@ export const colors = {
     surface: '#1A2B36',
     grey: '#2C3A4B',
     confirm: '#3CB371',
+    danger: '#C0392B',
   },
 };
 
@@ -38,6 +40,7 @@ export const themes = {
     '--color-surface': colors.light.surface,
     '--color-grey': colors.light.grey,
     '--color-confirm': colors.light.confirm,
+    '--color-danger': colors.light.danger,
   }),
   dark: vars({
     '--color-primary': colors.dark.primary,
@@ -49,5 +52,6 @@ export const themes = {
     '--color-surface': colors.dark.surface,
     '--color-grey': colors.dark.grey,
     '--color-confirm': colors.dark.confirm,
+    '--color-danger': colors.dark.danger,
   }),
 };

@@ -32,12 +32,14 @@ export default function useAudio(hymnId: Hymn['id']) {
     }
   }, [playlist.length, initializePlaylist]);
 
+  // Update loading state based on player status
   useEffect(() => {
     if (status.isLoaded) {
       setIsLoading(false);
     }
   }, [status.isLoaded]);
 
+  // Set current hymn when hymnId changes
   useEffect(() => {
     if (hymnId) {
       setCurrentHymn(hymnId);

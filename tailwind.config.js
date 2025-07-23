@@ -15,6 +15,7 @@ module.exports = {
         surface: 'var(--color-surface)',
         grey: 'var(--color-grey)',
         confirm: 'var(--color-confirm)',
+        danger: 'var(--color-danger)',
       },
       fontFamily: {
         lxregular: ['Lexend-Regular', 'sans-serif'],

@@ -6,7 +6,7 @@ export type Language = 'es' | 'en';
 
 export const getHymns = async (
   db: SQLiteDatabase,
-  language: Language,
+  language: Language = 'en',
   isAscending: boolean = true
 ) => {
   try {
@@ -17,7 +17,6 @@ export const getHymns = async (
       JOIN hymn_translations ht ON h.id = ht.hymn_id AND ht.language = ?
     `;
 
-    // Add ordering
     sql += ' ORDER BY ht.title ' + (isAscending ? 'ASC' : 'DESC');
 
     const params: string[] = [language];
@@ -29,7 +28,7 @@ export const getHymns = async (
   }
 };
 
-export const getHymn = async (db: SQLiteDatabase, id: Hymn['id'], language: Language) => {
+export const getHymn = async (db: SQLiteDatabase, id: Hymn['id'], language: Language = 'en') => {
   try {
     const sql = `
       SELECT h.id, h.author_id, h.verse, h.has_track, h.has_demo, ht.title, ht.text, a.name AS author_name

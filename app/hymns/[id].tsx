@@ -1,30 +1,41 @@
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Player from '~/components/hymns/Player';
 
 import ContentInfo from '~/components/shared/ContentInfo';
+import Error from '~/components/shared/Error';
 import Loading from '~/components/shared/Loading';
 import useHymn from '~/hooks/useHymn';
 
 export default function HymnScreen() {
   const { id } = useLocalSearchParams();
-  const { data, isLoading } = useHymn(Number(id));
+  const { data, isLoading, error } = useHymn(Number(id));
   const insets = useSafeAreaInsets();
 
   if (isLoading) return <Loading />;
 
+  if (error || !data) {
+    return <Error title="There was an error loading the hymn" message={error?.message} />;
+  }
+
   return (
     <View className="flex-1">
+      <Stack.Screen
+        options={{
+          title: data.title,
+        }}
+      />
+
       <ScrollView className="p-6" contentContainerClassName="pb-16">
-        <Text className="mb-4 text-right font-lxmedium text-text opacity-60">{data?.verse}</Text>
+        <Text className="mb-4 text-right font-lxmedium text-text opacity-60">{data.verse}</Text>
 
         <Text
           className="font-lxregular text-3xl text-text"
           style={{
             lineHeight: 36,
           }}>
-          {data?.text}
+          {data.text}
         </Text>
       </ScrollView>
 
