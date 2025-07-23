@@ -2,10 +2,10 @@ import { TabTriggerSlotProps } from 'expo-router/ui';
 import { Ref, forwardRef } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-import Icon, { IconName } from '~/components/shared/Icon';
+import Icon from '~/components/shared/Icon';
 
 export type TabButtonProps = TabTriggerSlotProps & {
-  icon: IconName;
+  icon: string;
   label: string;
 };
 
@@ -21,7 +21,7 @@ export const TabButton = forwardRef(
         }}>
         <Icon name={icon} color="primary" size={22} />
 
-        <Text className="font-lxmedium text-primary text-xs">{label}</Text>
+        <Text className="font-lxmedium text-xs text-primary">{label}</Text>
       </Pressable>
     );
   }

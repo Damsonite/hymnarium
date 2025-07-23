@@ -1,11 +1,11 @@
 import { useColorScheme } from 'nativewind';
 import { TouchableOpacity } from 'react-native';
 
-import Icon, { IconName } from '~/components/shared/Icon';
+import Icon from '~/components/shared/Icon';
 import { colors } from '~/utils/color';
 
 interface PlayerButtonProps {
-  icon: IconName;
+  icon: string;
   onPress?: () => void;
   shaped?: boolean;
   active?: boolean;

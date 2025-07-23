@@ -54,12 +54,27 @@ export default function useAudio(hymnId: Hymn['id']) {
       status.currentTime > 0 &&
       status.currentTime >= (status.duration || 0) - 0.1
     ) {
-      const nextId = nextTrack();
-      if (nextId && nextId !== hymnId) {
-        // Track ended, auto-advance handled by parent component
+      if (isLooping) {
+        player?.seekTo(0);
+        player?.play();
+        setIsPlaying(true);
+      } else {
+        const nextId = nextTrack();
+        if (nextId && nextId !== hymnId) {
+          // Track ended, auto-advance handled by parent component
+        }
       }
     }
-  }, [status.playing, status.currentTime, status.duration, status.isLoaded, hymnId, nextTrack]);
+  }, [
+    status.playing,
+    status.currentTime,
+    status.duration,
+    status.isLoaded,
+    hymnId,
+    nextTrack,
+    isLooping,
+    player,
+  ]);
 
   const handlePlayPause = () => {
     if (isLoading) return;

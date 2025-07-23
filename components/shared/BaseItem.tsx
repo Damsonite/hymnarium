@@ -2,7 +2,7 @@ import { useColorScheme } from 'nativewind';
 import { Text, TouchableOpacity, View } from 'react-native';
 
 import BoxArt from '~/components/shared/BoxArt';
-import Icon, { IconName } from '~/components/shared/Icon';
+import Icon from '~/components/shared/Icon';
 import { Color, colors } from '~/utils/color';
 
 export type Tag = {
@@ -11,7 +11,7 @@ export type Tag = {
 };
 
 interface BaseItemProps {
-  iconName: IconName;
+  iconName: string;
   title: string;
   subtitle?: string;
   isFavorite?: boolean;
