@@ -1,10 +1,17 @@
-import { Text, View } from 'react-native';
+import { useState } from 'react';
+import { View } from 'react-native';
+
+import SectionHeader from '~/components/shared/SectionHeader';
+import VideoList from '~/components/videos/VideoList';
 
 export default function Videos() {
+  const [isAscending, setIsAscending] = useState(false);
+
   return (
     <View className="container">
-      <Text className="title">Selecciona un video</Text>
-      <Text className="text-text">Lista de videos</Text>
+      <SectionHeader title="All videos" isAscending={isAscending} setIsAscending={setIsAscending} />
+
+      <VideoList isAscending={isAscending} />
     </View>
   );
 }

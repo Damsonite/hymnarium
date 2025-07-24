@@ -24,7 +24,7 @@ export default function HymnItem({ item }: HymnItemProps) {
     <BaseItem
       iconName="music"
       title={item.title}
-      subtitle={item.author_name ?? 'Desconocido'}
+      subtitle={item.author_name ?? 'Unknown'}
       tags={tags}
       isFavorite={item.is_favorite}
       onPress={handlePress}

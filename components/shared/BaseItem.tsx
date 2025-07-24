@@ -24,8 +24,7 @@ export default function BaseItem({
   iconName,
   title,
   subtitle,
-  isFavorite = false,
-  showFavorite = true,
+  isFavorite = undefined,
   tags = [],
   onPress,
 }: BaseItemProps) {
@@ -44,7 +43,7 @@ export default function BaseItem({
             {title}
           </Text>
 
-          {showFavorite && (
+          {isFavorite !== undefined && (
             <Icon name={isFavorite ? 'heart' : 'heart-o'} size={16} color="primary" />
           )}
         </View>
