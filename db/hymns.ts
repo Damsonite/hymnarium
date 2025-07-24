@@ -7,7 +7,8 @@ export type Language = 'es' | 'en';
 export const getHymns = async (
   db: SQLiteDatabase,
   language: Language = 'en',
-  isAscending: boolean = true
+  isAscending: boolean = true,
+  favoriteIds: number[] = []
 ) => {
   try {
     let sql = `
@@ -21,7 +22,15 @@ export const getHymns = async (
 
     const params: string[] = [language];
 
-    return await db.getAllAsync<Hymn>(sql, params);
+    const result = await db.getAllAsync<Hymn>(sql, params);
+
+    // Atach is_favorite property to each hymn
+    const hymns = result.map((hymn) => ({
+      ...hymn,
+      is_favorite: favoriteIds.includes(hymn.id),
+    }));
+
+    return hymns;
   } catch (error) {
     console.error('Error fetching hymns:', error);
     return [];

@@ -1,8 +1,9 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Player from '~/components/hymns/Player';
 
+import FavoriteButton from '~/components/hymns/FavoriteButton';
+import Player from '~/components/hymns/Player';
 import ContentInfo from '~/components/shared/ContentInfo';
 import Error from '~/components/shared/Error';
 import Loading from '~/components/shared/Loading';
@@ -10,7 +11,8 @@ import useHymn from '~/hooks/useHymn';
 
 export default function HymnScreen() {
   const { id } = useLocalSearchParams();
-  const { data, isLoading, error } = useHymn(Number(id));
+  const hymnId = Number(id);
+  const { data, isLoading, error } = useHymn(hymnId);
   const insets = useSafeAreaInsets();
 
   if (isLoading) return <Loading />;
@@ -40,9 +42,13 @@ export default function HymnScreen() {
       </ScrollView>
 
       <View className="surface mb-2 pt-4 shadow-lg" style={{ paddingBottom: insets.bottom }}>
-        <ContentInfo data={data} />
+        <View className="mr-3 flex-row items-center">
+          <ContentInfo data={data} />
 
-        <Player id={Number(id)} />
+          <FavoriteButton hymnId={hymnId} />
+        </View>
+
+        <Player id={hymnId} />
       </View>
     </View>
   );

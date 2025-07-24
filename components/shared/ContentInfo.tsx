@@ -10,7 +10,7 @@ interface ContentInfoProps {
 
 export default function ContentInfo({ data }: ContentInfoProps) {
   return (
-    <View className="mx-4 flex-row items-center gap-2">
+    <View className="mx-4 flex-1 flex-row items-center gap-2">
       <BoxArt iconName="music" />
 
       <View className="ml-1 flex-1 overflow-hidden">

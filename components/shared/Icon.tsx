@@ -16,7 +16,7 @@ const Icon = ({ name, size = 24, color = 'text' }: IconProps) => {
   const finalColor =
     typeof color === 'string' && color in colors[mode] ? colors[mode][color as Color] : color;
 
-  const isFontAwesome = ['heart', 'heart-o'].includes(name);
+  const isFontAwesome = ['heart', 'heart-o', 'sort-alpha-asc', 'sort-alpha-desc'].includes(name);
 
   if (isFontAwesome) {
     return <FontAwesome name={name as any} size={size} color={finalColor} />;
