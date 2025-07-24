@@ -7,9 +7,5 @@
 }
 
 .surface {
-  @apply border-grey border-t-[1px] bg-surface shadow-lg;
-}
-
-.title {
-  @apply font-lxmedium text-xl text-text;
+  @apply border-t-[1px] border-grey bg-surface shadow-lg;
 }

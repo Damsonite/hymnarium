@@ -7,17 +7,21 @@ interface ListHeaderProps {
   showListControls?: boolean;
   isAscending?: boolean;
   setIsAscending?: (isAscending: boolean) => void;
+  largeTitle?: boolean;
 }
 
-export default function ListHeader({
+export default function SectionHeader({
   title,
   showListControls = true,
   isAscending = true,
   setIsAscending,
+  largeTitle = false,
 }: ListHeaderProps) {
   return (
-    <View className="border-secondary flex-row items-center justify-between border-b pb-2">
-      <Text className="title">{title}</Text>
+    <View className="flex-row items-center justify-between border-b border-secondary pb-2">
+      <Text className="font-lxmedium text-text" style={{ fontSize: largeTitle ? 20 : 16 }}>
+        {title}
+      </Text>
 
       {showListControls && setIsAscending && (
         <TouchableOpacity
