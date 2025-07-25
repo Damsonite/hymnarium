@@ -1,8 +1,6 @@
 import { SQLiteDatabase } from 'expo-sqlite';
 
-import { Video } from '~/types/video';
-
-export type Language = 'es' | 'en';
+import { Language, Video } from '~/types';
 
 export const getVideos = async (
   db: SQLiteDatabase,

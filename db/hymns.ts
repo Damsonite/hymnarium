@@ -1,8 +1,6 @@
 import { SQLiteDatabase } from 'expo-sqlite';
 
-import { Hymn } from '~/types/hymn';
-
-export type Language = 'es' | 'en';
+import { Hymn, Language } from '~/types';
 
 export const getHymns = async (
   db: SQLiteDatabase,

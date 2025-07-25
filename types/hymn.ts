@@ -1,15 +1,9 @@
-interface Author {
-  id: number;
-  name: string;
-}
-
 export interface Hymn {
   id: number;
-  author_id: Author['id'];
+  author_id: number;
   verse?: string;
   has_track: number;
   has_demo: number;
-
   title: string;
   text: string;
   author_name: string;
