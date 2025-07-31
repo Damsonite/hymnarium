@@ -2,25 +2,23 @@ import { Text, View } from 'react-native';
 
 import BoxArt from '~/components/shared/BoxArt';
 import Marquee from '~/components/shared/Marquee';
-import { Hymn } from '~/types/hymn';
 
 interface ContentInfoProps {
-  data: Hymn | null;
+  title: string;
+  subtitle?: string;
 }
 
-export default function ContentInfo({ data }: ContentInfoProps) {
+export default function ContentInfo({ title, subtitle }: ContentInfoProps) {
   return (
     <View className="mx-4 flex-1 flex-row items-center gap-2">
       <BoxArt iconName="music" />
 
       <View className="ml-1 flex-1 overflow-hidden">
-        <Marquee text={data?.title ?? ''} className="font-lxmedium text-[18px] text-text" />
+        <Marquee text={title} className="font-lxmedium text-[18px] text-text" />
 
-        {data?.author_name && (
-          <Text className="font-lxmedium text-text opacity-60" numberOfLines={1}>
-            {data.author_name}
-          </Text>
-        )}
+        <Text className="font-lxmedium text-text opacity-60" numberOfLines={1}>
+          {subtitle || 'Unknown'}
+        </Text>
       </View>
     </View>
   );
