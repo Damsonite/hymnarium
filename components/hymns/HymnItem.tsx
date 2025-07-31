@@ -1,12 +1,9 @@
 import { useRouter } from 'expo-router';
+
 import BaseItem, { Tag } from '~/components/shared/BaseItem';
-import { Hymn } from '~/types/hymn';
+import { Hymn } from '~/types';
 
-interface HymnItemProps {
-  item: Hymn;
-}
-
-export default function HymnItem({ item }: HymnItemProps) {
+export default function HymnItem({ item }: { item: Hymn }) {
   const router = useRouter();
   const tags: Tag[] = [];
 

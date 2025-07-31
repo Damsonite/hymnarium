@@ -4,7 +4,7 @@ import { Hymn, Language } from '~/types';
 
 export const getHymns = async (
   db: SQLiteDatabase,
-  language: Language = 'en',
+  language: Language = 'es',
   isAscending: boolean = true,
   favoriteIds: number[] = []
 ) => {
@@ -22,7 +22,6 @@ export const getHymns = async (
 
     const result = await db.getAllAsync<Hymn>(sql, params);
 
-    // Atach is_favorite property to each hymn
     const hymns = result.map((hymn) => ({
       ...hymn,
       is_favorite: favoriteIds.includes(hymn.id),

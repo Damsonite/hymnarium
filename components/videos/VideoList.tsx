@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import BaseList from '~/components/shared/BaseList';
 import VideoItem from '~/components/videos/VideoItem';
 import { getVideos } from '~/db/videos';
-import { Video } from '~/types/video';
+import { Video } from '~/types';
 
 interface VideoListProps {
   isAscending?: boolean;
@@ -16,7 +16,7 @@ export default function VideoList({ isAscending }: VideoListProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getVideos(db, 'en', isAscending);
+      const result = await getVideos(db, 'es', isAscending);
 
       setData(result);
     };

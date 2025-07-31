@@ -5,7 +5,7 @@ import HymnItem from '~/components/hymns/HymnItem';
 import BaseList from '~/components/shared/BaseList';
 import { getHymns } from '~/db/hymns';
 import { useFavoritesStore } from '~/store/favorites';
-import { Hymn } from '~/types/hymn';
+import { Hymn } from '~/types';
 
 interface HymnListProps {
   isAscending?: boolean;
@@ -19,7 +19,7 @@ export default function HymnList({ isAscending, onlyFavorites = false }: HymnLis
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getHymns(db, 'en', isAscending, favoritesIds);
+      const result = await getHymns(db, 'es', isAscending, favoritesIds);
 
       if (onlyFavorites) {
         const favorites = result.filter((hymn) => favoritesIds.includes(hymn.id));

@@ -4,7 +4,6 @@ import Icon from '~/components/shared/Icon';
 
 interface ListHeaderProps {
   title: string;
-  showListControls?: boolean;
   isAscending?: boolean;
   setIsAscending?: (isAscending: boolean) => void;
   largeTitle?: boolean;
@@ -12,7 +11,6 @@ interface ListHeaderProps {
 
 export default function SectionHeader({
   title,
-  showListControls = true,
   isAscending = true,
   setIsAscending,
   largeTitle = false,
@@ -23,7 +21,7 @@ export default function SectionHeader({
         {title}
       </Text>
 
-      {showListControls && setIsAscending && (
+      {setIsAscending && (
         <TouchableOpacity
           className="flex-row items-center gap-2"
           onPress={() => setIsAscending(!isAscending)}>

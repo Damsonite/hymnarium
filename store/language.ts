@@ -13,7 +13,7 @@ export interface LanguageState {
 export const useLanguageStore = create<LanguageState>()(
   persist(
     (set, get) => ({
-      language: 'en',
+      language: 'es',
 
       setLanguage: (language: Language) =>
         set(() => ({
@@ -22,7 +22,7 @@ export const useLanguageStore = create<LanguageState>()(
 
       toggleLanguage: () =>
         set((state) => ({
-          language: state.language === 'en' ? 'es' : 'en',
+          language: state.language === 'es' ? 'ek' : 'es',
         })),
     }),
     {
