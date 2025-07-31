@@ -1,8 +1,8 @@
 import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 
-import { getHymn, Language } from '~/db/hymns';
-import { Hymn } from '~/types/hymn';
+import { getHymn } from '~/db/hymns';
+import { Hymn, Language } from '~/types';
 
 export default function useHymn(id: Hymn['id'], language: Language = 'en') {
   const db = useSQLiteContext();
