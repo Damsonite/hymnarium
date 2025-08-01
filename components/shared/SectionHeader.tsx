@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import Icon from '~/components/shared/Icon';
 
 interface ListHeaderProps {
-  title: string;
+  title: string | string[];
   isAscending?: boolean;
   setIsAscending?: (isAscending: boolean) => void;
   largeTitle?: boolean;

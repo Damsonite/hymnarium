@@ -10,16 +10,17 @@ import { Hymn } from '~/types';
 interface HymnListProps {
   isAscending?: boolean;
   onlyFavorites?: boolean;
+  topicId?: number;
 }
 
-export default function HymnList({ isAscending, onlyFavorites = false }: HymnListProps) {
+export default function HymnList({ isAscending, onlyFavorites = false, topicId }: HymnListProps) {
   const db = useSQLiteContext();
   const [data, setData] = useState<Hymn[]>([]);
   const { favoritesIds } = useFavoritesStore();
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getHymns(db, 'es', isAscending, favoritesIds);
+      const result = await getHymns(db, 'es', isAscending, favoritesIds, topicId);
 
       if (onlyFavorites) {
         const favorites = result.filter((hymn) => favoritesIds.includes(hymn.id));
@@ -31,7 +32,7 @@ export default function HymnList({ isAscending, onlyFavorites = false }: HymnLis
     };
 
     fetchData();
-  }, [db, isAscending, favoritesIds, onlyFavorites]);
+  }, [db, isAscending, favoritesIds, onlyFavorites, topicId]);
 
   const emptyMessage = onlyFavorites ? 'No favorite hymns yet' : 'No hymns available';
 

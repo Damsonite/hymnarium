@@ -6,7 +6,8 @@ export const getHymns = async (
   db: SQLiteDatabase,
   language: Language = 'es',
   isAscending: boolean = true,
-  favoriteIds: number[] = []
+  favoriteIds: number[] = [],
+  topicId?: number
 ) => {
   try {
     let sql = `
@@ -16,9 +17,14 @@ export const getHymns = async (
       JOIN hymn_translations ht ON h.id = ht.hymn_id AND ht.language = ?
     `;
 
-    sql += ' ORDER BY ht.title ' + (isAscending ? 'ASC' : 'DESC');
-
     const params: string[] = [language];
+
+    if (topicId) {
+      sql += ` JOIN hymn_topics hto ON h.id = hto.hymn_id WHERE hto.topic_id = ?`;
+      params.push(topicId.toString());
+    }
+
+    sql += ' ORDER BY ht.title ' + (isAscending ? 'ASC' : 'DESC');
 
     const result = await db.getAllAsync<Hymn>(sql, params);
 

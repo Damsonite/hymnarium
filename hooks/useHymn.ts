@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getHymn } from '~/db/hymns';
 import { Hymn, Language } from '~/types';
 
-export default function useHymn(id: Hymn['id'], language: Language = 'en') {
+export default function useHymn(id: number, language: Language = 'es') {
   const db = useSQLiteContext();
   const [data, setData] = useState<Hymn | null>(null);
   const [isLoading, setIsLoading] = useState(true);

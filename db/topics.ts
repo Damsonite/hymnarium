@@ -12,7 +12,6 @@ export const getTopics = async (db: SQLiteDatabase) => {
     `;
 
     const result = await db.getAllAsync<Topic>(sql, []);
-    console.log('Fetched topics:', result);
     return result ? result : [];
   } catch (error) {
     console.error('Error fetching topics with hymn count:', error);
