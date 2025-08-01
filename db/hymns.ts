@@ -7,7 +7,8 @@ export const getHymns = async (
   language: Language = 'es',
   isAscending: boolean = true,
   favoriteIds: number[] = [],
-  topicId?: number
+  topicId?: number,
+  query?: string
 ) => {
   try {
     let sql = `
@@ -18,6 +19,11 @@ export const getHymns = async (
     `;
 
     const params: string[] = [language];
+
+    if (query) {
+      sql += ` WHERE (ht.title LIKE ? OR a.name LIKE ?)`;
+      params.push(`%${query}%`, `%${query}%`);
+    }
 
     if (topicId) {
       sql += ` JOIN hymn_topics hto ON h.id = hto.hymn_id WHERE hto.topic_id = ?`;
