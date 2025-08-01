@@ -2,13 +2,15 @@ import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 
 import { getVideo } from '~/db/videos';
-import { Language, Video } from '~/types';
+import { useLanguageStore } from '~/store/language';
+import { Video } from '~/types';
 
-export default function useVideo(id: number, language: Language = 'en') {
+export default function useVideo(id: number) {
   const db = useSQLiteContext();
   const [data, setData] = useState<Video | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const { language } = useLanguageStore();
 
   useEffect(() => {
     const fetchData = async () => {

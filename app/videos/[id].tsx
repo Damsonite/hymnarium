@@ -8,13 +8,11 @@ import ContentInfo from '~/components/shared/ContentInfo';
 import Error from '~/components/shared/Error';
 import Loading from '~/components/shared/Loading';
 import useVideo from '~/hooks/useVideo';
-import { useLanguageStore } from '~/store/language';
 import { getYouTubeEmbedUrl } from '~/utils/url';
 
 export default function VideoScreen() {
   const { id } = useLocalSearchParams();
-  const { language } = useLanguageStore();
-  const { data, isLoading, error } = useVideo(Number(id), language);
+  const { data, isLoading, error } = useVideo(Number(id));
 
   const insets = useSafeAreaInsets();
 

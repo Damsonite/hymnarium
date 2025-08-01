@@ -9,13 +9,11 @@ import ContentInfo from '~/components/shared/ContentInfo';
 import Error from '~/components/shared/Error';
 import Loading from '~/components/shared/Loading';
 import useHymn from '~/hooks/useHymn';
-import { useLanguageStore } from '~/store/language';
 
 export default function HymnScreen() {
   const { id } = useLocalSearchParams();
   const hymnId = Number(id);
-  const { language } = useLanguageStore();
-  const { data, isLoading, error } = useHymn(hymnId, language);
+  const { data, isLoading, error } = useHymn(hymnId);
   const insets = useSafeAreaInsets();
 
   if (isLoading) return <Loading />;

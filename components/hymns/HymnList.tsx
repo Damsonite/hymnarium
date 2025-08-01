@@ -5,6 +5,7 @@ import HymnItem from '~/components/hymns/HymnItem';
 import BaseList from '~/components/shared/BaseList';
 import { getHymns } from '~/db/hymns';
 import { useFavoritesStore } from '~/store/favorites';
+import { useLanguageStore } from '~/store/language';
 import { Hymn } from '~/types';
 
 interface HymnListProps {
@@ -23,10 +24,11 @@ export default function HymnList({
   const db = useSQLiteContext();
   const [data, setData] = useState<Hymn[]>([]);
   const { favoritesIds } = useFavoritesStore();
+  const { language } = useLanguageStore();
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getHymns(db, 'es', isAscending, favoritesIds, topicId, query);
+      const result = await getHymns(db, language, isAscending, favoritesIds, topicId, query);
 
       if (onlyFavorites) {
         const favorites = result.filter((hymn) => favoritesIds.includes(hymn.id));
@@ -38,7 +40,7 @@ export default function HymnList({
     };
 
     fetchData();
-  }, [db, isAscending, favoritesIds, onlyFavorites, topicId, query]);
+  }, [db, isAscending, favoritesIds, onlyFavorites, topicId, query, language]);
 
   const emptyMessage = onlyFavorites ? 'No favorite hymns yet' : 'No hymns available';
 

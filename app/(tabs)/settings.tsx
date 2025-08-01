@@ -1,9 +1,16 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+
+import LanguageSelector from '~/components/settings/LanguageSelector';
+import SectionHeader from '~/components/shared/SectionHeader';
 
 export default function Settings() {
   return (
     <View className="container">
-      <Text>Configuración</Text>
+      <SectionHeader title="Settings" largeTitle />
+
+      <View className="mt-6">
+        <LanguageSelector />
+      </View>
     </View>
   );
 }
