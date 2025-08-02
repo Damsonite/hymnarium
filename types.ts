@@ -1,5 +1,20 @@
 export type Language = 'en' | 'es' | 'ek';
 
+export interface AppConfig {
+  app: {
+    name: string;
+  };
+  database: {
+    name: string;
+    assetSource: { assetId: any };
+  };
+  languages: {
+    value: Language;
+    label: string;
+  }[];
+  defaultLanguage: Language;
+}
+
 export interface Hymn {
   id: number;
   author_id: number;

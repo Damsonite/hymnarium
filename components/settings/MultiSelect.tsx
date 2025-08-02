@@ -16,6 +16,11 @@ export default function MultiSelect({
 }: MultiSelectProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const handleSelect = (value: string) => {
+    handleOptionSelect(value);
+    setIsExpanded(false);
+  };
+
   return (
     <>
       <TouchableOpacity
@@ -34,7 +39,7 @@ export default function MultiSelect({
               className={`border-b border-secondary px-3 py-3 ${
                 option.value === currentOption?.value ? 'bg-primary/10' : ''
               }`}
-              onPress={() => handleOptionSelect(option.value)}>
+              onPress={() => handleSelect(option.value)}>
               <Text
                 className={`font-lxmedium ${
                   option.value === currentOption?.value ? 'text-primary' : 'text-text'

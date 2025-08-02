@@ -1,10 +1,13 @@
 import { SQLiteDatabase } from 'expo-sqlite';
+import { appConfig } from '~/config/appConfig';
 
 import { Language, Video } from '~/types';
 
+const defaultLanguage = appConfig.defaultLanguage;
+
 export const getVideos = async (
   db: SQLiteDatabase,
-  language: Language = 'en',
+  language: Language = defaultLanguage,
   isAscending: boolean = true
 ) => {
   try {
@@ -27,7 +30,11 @@ export const getVideos = async (
   }
 };
 
-export const getVideo = async (db: SQLiteDatabase, id: Video['id'], language: Language = 'en') => {
+export const getVideo = async (
+  db: SQLiteDatabase,
+  id: Video['id'],
+  language: Language = defaultLanguage
+) => {
   try {
     const sql = `
       SELECT v.id, v.verse, v.url, vt.title

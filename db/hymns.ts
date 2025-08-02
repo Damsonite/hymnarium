@@ -1,10 +1,13 @@
 import { SQLiteDatabase } from 'expo-sqlite';
+import { appConfig } from '~/config/appConfig';
 
 import { Hymn, Language } from '~/types';
 
+const defaultLanguage = appConfig.defaultLanguage;
+
 export const getHymns = async (
   db: SQLiteDatabase,
-  language: Language = 'es',
+  language: Language = defaultLanguage,
   isAscending: boolean = true,
   favoriteIds: number[] = [],
   topicId?: number,
@@ -46,7 +49,11 @@ export const getHymns = async (
   }
 };
 
-export const getHymn = async (db: SQLiteDatabase, id: Hymn['id'], language: Language = 'en') => {
+export const getHymn = async (
+  db: SQLiteDatabase,
+  id: number,
+  language: Language = defaultLanguage
+) => {
   try {
     const sql = `
       SELECT h.id, h.author_id, h.verse, h.has_track, h.has_demo, ht.title, ht.text, a.name AS author_name
