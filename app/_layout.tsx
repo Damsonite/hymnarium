@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { SQLiteProvider } from 'expo-sqlite';
 import { useColorScheme } from 'nativewind';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import Theme from '~/components/shared/Theme';
 import { appConfig } from '~/config/appConfig';
@@ -55,12 +56,14 @@ export default function RootLayout() {
   }
 
   return (
-    <SQLiteProvider
-      databaseName={appConfig.database.name}
-      assetSource={appConfig.database.assetSource}>
-      <Theme>
-        <StackNavigator />
-      </Theme>
-    </SQLiteProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SQLiteProvider
+        databaseName={appConfig.database.name}
+        assetSource={appConfig.database.assetSource}>
+        <Theme>
+          <StackNavigator />
+        </Theme>
+      </SQLiteProvider>
+    </GestureHandlerRootView>
   );
 }

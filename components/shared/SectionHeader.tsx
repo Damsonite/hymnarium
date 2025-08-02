@@ -20,19 +20,21 @@ export default function SectionHeader({
 }: ListHeaderProps) {
   const router = useRouter();
 
+  const handleBackPress = () => {
+    if (showBackButton) {
+      router.back();
+    }
+  };
+
   return (
     <View className="flex-row items-center justify-between border-b border-secondary pb-4">
-      <View className="flex-row items-center gap-6">
-        {showBackButton && (
-          <Pressable className="p-1" onPress={() => router.back()}>
-            <Icon name="arrow-left" size={16} color="text" />
-          </Pressable>
-        )}
+      <Pressable className="flex-row items-center gap-6" onPress={handleBackPress}>
+        {showBackButton && <Icon name="arrow-left" size={16} color="text" />}
 
         <Text className="font-lxmedium text-text" style={{ fontSize: largeTitle ? 20 : 16 }}>
           {title}
         </Text>
-      </View>
+      </Pressable>
 
       {setIsAscending && (
         <TouchableOpacity

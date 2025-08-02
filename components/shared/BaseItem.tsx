@@ -18,7 +18,6 @@ interface BaseItemProps {
   showFavorite?: boolean;
   tags?: Tag[];
   onPress?: () => void;
-  boxArtSize?: number;
 }
 
 export default function BaseItem({
@@ -28,14 +27,13 @@ export default function BaseItem({
   isFavorite = undefined,
   tags = [],
   onPress,
-  boxArtSize,
 }: BaseItemProps) {
   const { colorScheme } = useColorScheme();
   const mode = colorScheme ?? 'light';
 
   return (
     <TouchableOpacity className="mb-2 h-20 w-full flex-row" onPress={onPress}>
-      <BoxArt iconName={iconName} size={boxArtSize} />
+      <BoxArt iconName={iconName} />
 
       {/* Content */}
       <View className="flex-1 justify-center gap-2 px-2">

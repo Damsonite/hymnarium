@@ -14,12 +14,12 @@ export default function Marquee({ text, className = '', speed = 0.5, spacing = 4
   const [containerWidth, setContainerWidth] = useState(0);
   const [shouldUseMarquee, setShouldUseMarquee] = useState(false);
 
-  // Update marquee state when dimensions change
   useEffect(() => {
     if (containerWidth > 0 && textWidth > 0) {
-      setShouldUseMarquee(textWidth > containerWidth);
+      const needsMarquee = textWidth >= containerWidth - 10;
+      setShouldUseMarquee(needsMarquee);
     }
-  }, [textWidth, containerWidth]);
+  }, [textWidth, containerWidth, text]);
 
   return (
     <>
@@ -39,7 +39,7 @@ export default function Marquee({ text, className = '', speed = 0.5, spacing = 4
           const { width } = event.nativeEvent.layout;
           setContainerWidth(width);
         }}>
-        {shouldUseMarquee ? (
+        {shouldUseMarquee && textWidth > 0 ? (
           <RNMarquee speed={speed} spacing={spacing}>
             <Text className={className}>{text}</Text>
           </RNMarquee>

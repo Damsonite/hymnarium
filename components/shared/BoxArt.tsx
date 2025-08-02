@@ -4,14 +4,11 @@ import Icon from '~/components/shared/Icon';
 
 interface BoxArtProps {
   iconName: string;
-  size?: number;
 }
 
-export default function BoxArt({ iconName, size = 72 }: BoxArtProps) {
+export default function BoxArt({ iconName }: BoxArtProps) {
   return (
-    <View
-      className="items-center justify-center rounded-2xl border-[1px] border-gray-300 bg-surface dark:border-gray-700"
-      style={{ width: size, aspectRatio: 1 }}>
+    <View className="size-20  items-center justify-center rounded-2xl border-[1px] border-gray-300 bg-surface dark:border-gray-700">
       <Icon name={iconName} size={32} />
     </View>
   );
