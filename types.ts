@@ -5,6 +5,9 @@ export type Theme = 'light' | 'dark' | 'system';
 export interface AppConfig {
   app: {
     name: string;
+    version: string;
+    year?: number;
+    author?: string;
   };
   database: {
     name: string;
@@ -15,6 +18,14 @@ export interface AppConfig {
     label: string;
   }[];
   defaultLanguage: Language;
+  links: {
+    repository?: string;
+    social?: {
+      label: string;
+      icon: string;
+      url: string;
+    }[];
+  };
 }
 
 export interface Hymn {
