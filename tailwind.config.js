@@ -13,7 +13,6 @@ module.exports = {
         muted: 'var(--color-muted)',
         background: 'var(--color-background)',
         surface: 'var(--color-surface)',
-        grey: 'var(--color-grey)',
         confirm: 'var(--color-confirm)',
         danger: 'var(--color-danger)',
       },

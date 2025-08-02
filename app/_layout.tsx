@@ -6,6 +6,7 @@ import { useColorScheme } from 'nativewind';
 import { useEffect } from 'react';
 
 import Theme from '~/components/shared/Theme';
+import { appConfig } from '~/config/appConfig';
 import '~/global.css';
 import { colors } from '~/utils/color';
 
@@ -31,15 +32,8 @@ function StackNavigator() {
         },
         animation: 'fade',
         headerShadowVisible: false,
-      }}>
-      <Stack.Screen
-        name="(tabs)"
-        options={{
-          title: 'Hymnarium',
-          headerTitleStyle: { fontFamily: 'Lexend-SemiBold', fontSize: 20 },
-        }}
-      />
-    </Stack>
+      }}
+    />
   );
 }
 
@@ -61,7 +55,9 @@ export default function RootLayout() {
   }
 
   return (
-    <SQLiteProvider databaseName="db.db" assetSource={{ assetId: require('../assets/db.db') }}>
+    <SQLiteProvider
+      databaseName={appConfig.database.name}
+      assetSource={appConfig.database.assetSource}>
       <Theme>
         <StackNavigator />
       </Theme>

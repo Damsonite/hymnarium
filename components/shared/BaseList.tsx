@@ -2,11 +2,14 @@ import { FlashList, ListRenderItemInfo } from '@shopify/flash-list';
 import { ReactElement } from 'react';
 import { Text, View } from 'react-native';
 
+import Loading from '~/components/shared/Loading';
+
 interface BaseListProps<T> {
   data: T[];
   renderItem: (info: ListRenderItemInfo<T>) => ReactElement;
   numColumns?: number;
   emptyMessage?: string;
+  loading?: boolean;
 }
 
 export default function BaseList<T>({
@@ -14,6 +17,7 @@ export default function BaseList<T>({
   renderItem,
   numColumns = 1,
   emptyMessage = 'No items available',
+  loading = false,
 }: BaseListProps<T>) {
   const ListEmpty = () => {
     return (
@@ -22,6 +26,8 @@ export default function BaseList<T>({
       </View>
     );
   };
+
+  if (loading) return <Loading fullscreen />;
 
   return (
     <View className="min-h-48 flex-1">

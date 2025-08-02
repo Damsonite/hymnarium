@@ -22,21 +22,27 @@ export default function HymnList({
   query,
 }: HymnListProps) {
   const db = useSQLiteContext();
-  const [data, setData] = useState<Hymn[]>([]);
   const { favoritesIds } = useFavoritesStore();
   const { language } = useLanguageStore();
 
+  const [data, setData] = useState<Hymn[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+
       const result = await getHymns(db, language, isAscending, favoritesIds, topicId, query);
 
       if (onlyFavorites) {
         const favorites = result.filter((hymn) => favoritesIds.includes(hymn.id));
         setData(favorites);
+        setLoading(false);
         return;
       }
 
       setData(result);
+      setLoading(false);
     };
 
     fetchData();
@@ -49,6 +55,7 @@ export default function HymnList({
       data={data}
       renderItem={({ item }) => <HymnItem item={item} />}
       emptyMessage={emptyMessage}
+      loading={loading}
     />
   );
 }

@@ -19,6 +19,7 @@ export default function TopicItem({ item }: { item: Topic }) {
       title={item.name}
       subtitle={`${item.hymn_count} himnos`}
       onPress={handlePress}
+      boxArtSize={64}
     />
   );
 }

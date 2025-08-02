@@ -11,7 +11,12 @@ export default function TopicScreen() {
 
   return (
     <View className="container">
-      <SectionHeader title={title} isAscending={isAscending} setIsAscending={setIsAscending} />
+      <SectionHeader
+        title={title}
+        isAscending={isAscending}
+        setIsAscending={setIsAscending}
+        showBackButton
+      />
 
       <HymnList topicId={Number(id)} isAscending={isAscending} />
     </View>

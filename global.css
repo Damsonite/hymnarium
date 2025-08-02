@@ -7,5 +7,5 @@
 }
 
 .surface {
-  @apply border-t-[1px] border-grey bg-surface shadow-lg;
+  @apply border-t-[1px] border-gray-300 bg-surface shadow-lg dark:border-gray-700;
 }

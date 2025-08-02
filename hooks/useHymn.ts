@@ -7,10 +7,11 @@ import { Hymn } from '~/types';
 
 export default function useHymn(id: number) {
   const db = useSQLiteContext();
+  const { language } = useLanguageStore();
+
   const [data, setData] = useState<Hymn | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const { language } = useLanguageStore();
 
   useEffect(() => {
     const fetchData = async () => {

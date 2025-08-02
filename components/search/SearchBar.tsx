@@ -16,6 +16,7 @@ export default function SearchBar({ query, setQuery }: SearchBarProps) {
   return (
     <View className="h-12 flex-row items-center gap-1 rounded-2xl bg-surface px-4">
       <Icon name="search" size={16} color="muted" />
+
       <TextInput
         className="ml-1 flex-1 font-lxregular text-text"
         placeholder="Search by title or author..."
