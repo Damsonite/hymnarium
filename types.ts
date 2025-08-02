@@ -1,6 +1,6 @@
 export type Language = 'en' | 'es' | 'ek';
 
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark';
 
 export interface AppConfig {
   app: {
