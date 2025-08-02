@@ -6,7 +6,7 @@ import { Language } from '~/types';
 export default function LanguageButton() {
   const { language, setLanguage } = useLanguageStore();
 
-  const nextLanguage: Language = language === 'es' ? 'ek' : 'es';
+  const nextLanguage: Language = language === 'es' ? 'en' : 'es';
 
   const handlePress = () => {
     setLanguage(nextLanguage);

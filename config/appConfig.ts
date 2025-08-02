@@ -12,8 +12,8 @@ export const appConfig: AppConfig = {
     assetSource: { assetId: require('../assets/db.db') },
   },
   languages: [
-    { value: 'es', label: 'Español' },
-    { value: 'ek', label: 'Embera Katio' },
+    { value: 'en', label: 'English' },
+    { value: 'es', label: 'Spanish' },
   ],
   defaultLanguage: 'es',
   links: {
