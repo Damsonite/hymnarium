@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { demos } from '~/utils/audioFiles';
+import { demos } from '~/config/audioFiles';
 
 const getAvailableHymnIds = (): number[] => {
   return Object.keys(demos)

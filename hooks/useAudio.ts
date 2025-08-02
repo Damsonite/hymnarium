@@ -1,8 +1,8 @@
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { useEffect, useState } from 'react';
 
+import { demos } from '~/config/audioFiles';
 import { usePlaylistStore } from '~/store/playlist';
-import { demos } from '~/utils/audioFiles';
 
 export default function useAudio(hymnId: number) {
   const audioSource = hymnId ? demos[hymnId.toString()] : null;
