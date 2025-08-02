@@ -1,9 +1,28 @@
 import { useColorScheme } from 'nativewind';
-import { View } from 'react-native';
+import { useEffect } from 'react';
+import { Appearance, View } from 'react-native';
+
+import { useThemeStore } from '~/store/theme';
 import { themes } from '~/utils/color';
 
-const Theme = ({ children }: { children: React.ReactNode }) => {
-  const { colorScheme } = useColorScheme();
+export default function Theme({ children }: { children: React.ReactNode }) {
+  const { colorScheme, setColorScheme } = useColorScheme();
+  const { theme } = useThemeStore();
+
+  useEffect(() => {
+    if (theme === 'system') {
+      const systemColorScheme = Appearance.getColorScheme() || 'light';
+      setColorScheme(systemColorScheme);
+
+      const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+        setColorScheme(colorScheme || 'light');
+      });
+
+      return () => subscription.remove();
+    } else {
+      setColorScheme(theme);
+    }
+  }, [theme, setColorScheme]);
 
   return (
     <View
@@ -12,6 +31,4 @@ const Theme = ({ children }: { children: React.ReactNode }) => {
       {children}
     </View>
   );
-};
-
-export default Theme;
+}

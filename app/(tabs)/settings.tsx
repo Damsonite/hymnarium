@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 
 import LanguageSelector from '~/components/settings/LanguageSelector';
+import ThemeSelector from '~/components/settings/ThemeSelector';
 import SectionHeader from '~/components/shared/SectionHeader';
 
 export default function Settings() {
@@ -10,6 +11,7 @@ export default function Settings() {
 
       <View className="mt-6">
         <LanguageSelector />
+        <ThemeSelector />
       </View>
     </View>
   );
