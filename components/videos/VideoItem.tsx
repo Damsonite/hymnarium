@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import BaseItem from '~/components/shared/BaseItem';
 
-import { Video } from '~/types/video';
+import { Video } from '~/types';
 
 interface VideoItemProps {
   item: Video;
