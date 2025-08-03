@@ -9,12 +9,15 @@ import ContentInfo from '~/components/shared/ContentInfo';
 import Error from '~/components/shared/Error';
 import Loading from '~/components/shared/Loading';
 import useHymn from '~/hooks/useHymn';
+import { useLanguageStore } from '~/store/language';
+import { formatVerse } from '~/utils/verse';
 
 export default function HymnScreen() {
   const { id } = useLocalSearchParams();
   const hymnId = Number(id);
   const { data, isLoading, error } = useHymn(hymnId);
   const insets = useSafeAreaInsets();
+  const { language } = useLanguageStore();
 
   if (isLoading) return <Loading />;
 
@@ -33,7 +36,9 @@ export default function HymnScreen() {
 
       <ScrollView className="p-6" contentContainerClassName="pb-16">
         {data.verse && (
-          <Text className="mb-4 text-right font-lxmedium text-text opacity-60">{data.verse}</Text>
+          <Text className="mb-4 text-right font-lxmedium text-text opacity-60">
+            {formatVerse(data.verse, language)}
+          </Text>
         )}
 
         <Text
