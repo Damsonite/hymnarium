@@ -53,7 +53,7 @@ export default function HymnList({
   return (
     <BaseList
       data={data}
-      renderItem={({ item }) => <HymnItem item={item} />}
+      renderItem={({ item }) => <HymnItem item={item} numbered />}
       emptyMessage={emptyMessage}
       loading={loading}
     />

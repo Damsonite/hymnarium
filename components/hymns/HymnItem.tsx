@@ -3,7 +3,12 @@ import { useRouter } from 'expo-router';
 import BaseItem, { Tag } from '~/components/shared/BaseItem';
 import { Hymn } from '~/types';
 
-export default function HymnItem({ item }: { item: Hymn }) {
+interface HymnItemProps {
+  item: Hymn;
+  numbered?: boolean;
+}
+
+export default function HymnItem({ item, numbered }: HymnItemProps) {
   const router = useRouter();
   const tags: Tag[] = [];
 
@@ -20,7 +25,7 @@ export default function HymnItem({ item }: { item: Hymn }) {
   return (
     <BaseItem
       iconName="music"
-      title={item.title}
+      title={numbered ? `${item.id}. ${item.title}` : item.title}
       subtitle={item.author_name ?? 'Unknown'}
       tags={tags}
       isFavorite={item.is_favorite}

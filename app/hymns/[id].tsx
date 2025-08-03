@@ -47,7 +47,7 @@ export default function HymnScreen() {
 
       <View className="surface mb-2 pt-4 shadow-lg" style={{ paddingBottom: insets.bottom }}>
         <View className="mr-3 flex-row items-center">
-          <ContentInfo title={data.title} subtitle={data.author_name} />
+          <ContentInfo id={data.id} title={data.title} subtitle={data.author_name} />
 
           <FavoriteButton hymnId={hymnId} />
         </View>
