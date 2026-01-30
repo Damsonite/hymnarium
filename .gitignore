@@ -32,3 +32,5 @@ android
 *.mp3
 *.aac
 audioFiles.*
+
+.idea/
