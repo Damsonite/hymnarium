@@ -1,5 +1,42 @@
 # 🎵 Hymnarium
 
+> [!IMPORTANT]
+> Este repositorio es una modificación del proyecto original para implementar un **CMS con Django** para un trabajo de _Plataformas de Programación_.
+>
+> Se cumplen los objetivos mediante:
+>
+> - Aplicación de la arquitectura **MVT**, separando claramente `models.py`, `views.py` y `templates/`.
+> - Implementación de **CRUD completo** para los modelos `Author`, `Hymn`, `Topic` y `HymnTranslation`.
+> - Desarrollo de **templates HTML** para listar, crear, editar, detallar y eliminar registros.
+> - Configuración de **URLs** para enrutar correctamente cada vista CRUD.
+> - Uso de **formularios de Django** para alta y edición de datos.
+> - Estilado de la interfaz con **Tailwind CSS** (incluido en la base de templates), como énfasis del apartado visual.
+
+## Ejecución
+
+Desde la raíz del repositorio:
+
+```bash
+cd cms
+
+# Crear y activar entorno virtual (opcional pero recomendado)
+python3 -m venv venv
+source venv/bin/activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Aplicar migraciones
+py manage.py migrate
+
+# Ejecutar servidor de desarrollo
+py manage.py runserver
+```
+
+Luego abre en el navegador:
+
+- `http://127.0.0.1:8000/`
+
 > A flexible, multilingual template for digital hymnbooks, built with **React Native** and **Expo**. Originally created as part of a real-world project, it’s now a reusable base designed to support different languages, features, and customizations.
 
 ## 📸 Screenshots
