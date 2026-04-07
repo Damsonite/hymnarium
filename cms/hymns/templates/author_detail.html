@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Author Detail | Hymnarium CMS{%
+endblock %} {% block content %}
+<h2>Author: {{ object.name }}</h2>
+<div class="detail-grid">
+  <p class="detail-item"><strong>ID:</strong> {{ object.id }}</p>
+</div>
+<p class="mt-4 inline-actions">
+  <a class="btn-muted" href="{% url 'hymns:author-update' object.pk %}">Edit</a>
+  <a class="btn-danger" href="{% url 'hymns:author-delete' object.pk %}"
+    >Delete</a
+  >
+</p>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %}Hymn Detail | Hymnarium CMS{%
+endblock %} {% block content %}
+<h2>Hymn {{ object.id }}</h2>
+<div class="detail-grid">
+  <p class="detail-item">
+    <strong>Author:</strong> {{ object.author|default:"-" }}
+  </p>
+  <p class="detail-item">
+    <strong>Topics:</strong>
+    {% for topic in object.topics.all %} {{ topic.name }}{% if not forloop.last
+    %}, {% endif %} {% empty %} - {% endfor %}
+  </p>
+  <p class="detail-item">
+    <strong>Verse:</strong> {{ object.verse|default:"-" }}
+  </p>
+  <p class="detail-item"><strong>Has track:</strong> {{ object.has_track }}</p>
+  <p class="detail-item"><strong>Has demo:</strong> {{ object.has_demo }}</p>
+</div>
+<p class="mt-4 inline-actions">
+  <a class="btn-muted" href="{% url 'hymns:hymn-update' object.pk %}">Edit</a>
+  <a class="btn-danger" href="{% url 'hymns:hymn-delete' object.pk %}"
+    >Delete</a
+  >
+</p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %}Delete | Hymnarium CMS{% endblock %}
+{% block content %}
+<h2>Confirm Delete</h2>
+<p class="mt-4">
+  Are you sure you want to delete: <strong>{{ object }}</strong>?
+</p>
+<form class="mt-4" method="post">
+  {% csrf_token %}
+  <div class="inline-actions">
+    <button class="btn-danger" type="submit">Delete</button>
+    <a class="btn-muted" href="javascript:history.back()">Cancel</a>
+  </div>
+</form>
+{% endblock %}

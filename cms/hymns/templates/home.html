@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block title %}Home | Hymnarium CMS{% endblock %}
+{%block content %}
+<h2>Manage Content</h2>
+<ul class="mt-4 grid gap-3 sm:grid-cols-2">
+  <li>
+    <a
+      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      href="{% url 'hymns:author-list' %}"
+      >Authors</a
+    >
+  </li>
+  <li>
+    <a
+      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      href="{% url 'hymns:topic-list' %}"
+      >Topics</a
+    >
+  </li>
+  <li>
+    <a
+      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      href="{% url 'hymns:hymn-list' %}"
+      >Hymns</a
+    >
+  </li>
+  <li>
+    <a
+      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      href="{% url 'hymns:hymntranslation-list' %}"
+      >Hymn Translations</a
+    >
+  </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %}Form | Hymnarium CMS{% endblock %}
+{%block content %}
+<h2>{% if object %}Edit{% else %}Create{% endif %} Entry</h2>
+<form class="mt-4" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <div class="inline-actions">
+    <button class="btn-primary" type="submit">Save</button>
+    <a class="btn-muted" href="javascript:history.back()">Cancel</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Hymnarium CMS{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0364A0",
+              secondary: "#78C0ED",
+              accent: "#FF6B35",
+              success: "#3CB371",
+              danger: "#E74C3C",
+              text: "#003A5E",
+              muted: "#A0B2C3",
+              background: "#FCFDFD",
+              surface: "#E2E6EA",
+            },
+            fontFamily: {
+              sans: ["Lexend", "ui-sans-serif", "system-ui"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-background text-text font-sans antialiased tracking-[0.01em];
+        }
+        h1 {
+          @apply text-2xl font-semibold tracking-wide;
+        }
+        h2 {
+          @apply text-xl font-medium tracking-wide;
+        }
+        h3 {
+          @apply text-lg font-medium tracking-wide;
+        }
+        a {
+          @apply transition-colors duration-150;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="url"],
+        input[type="search"],
+        input[type="password"],
+        input[type="date"],
+        input[type="datetime-local"],
+        input[type="time"],
+        input[type="tel"],
+        select,
+        textarea {
+          @apply mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm leading-5 text-text shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="url"],
+        input[type="search"],
+        input[type="password"],
+        select {
+          @apply max-w-full sm:max-w-md;
+        }
+        textarea {
+          @apply min-h-28 max-w-full sm:max-w-3xl;
+        }
+        form p {
+          @apply mb-4;
+        }
+        label {
+          @apply text-sm font-medium text-text;
+        }
+      }
+      @layer components {
+        .card {
+          @apply rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm;
+        }
+        .btn {
+          @apply inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium;
+        }
+        .btn-primary {
+          @apply btn bg-primary text-white hover:bg-primary/90;
+        }
+        .btn-danger {
+          @apply btn bg-danger text-white hover:bg-danger/90;
+        }
+        .btn-muted {
+          @apply btn bg-surface text-text hover:bg-secondary/50;
+        }
+        .text-link {
+          @apply text-primary hover:text-accent;
+        }
+        .nav-link {
+          @apply rounded-md px-2 py-1 text-sm text-primary hover:bg-secondary/35 hover:text-text;
+        }
+        .data-table {
+          @apply mt-4 w-full overflow-hidden rounded-lg border border-slate-200 text-sm;
+        }
+        .data-table thead {
+          @apply bg-surface text-left text-text;
+        }
+        .data-table th {
+          @apply px-3 py-2 font-medium;
+        }
+        .data-table td {
+          @apply border-t border-slate-100 px-3 py-2 align-top;
+        }
+        .inline-actions {
+          @apply flex flex-wrap gap-2;
+        }
+        .detail-grid {
+          @apply mt-4 grid gap-3 text-sm;
+        }
+        .detail-item {
+          @apply rounded-md bg-slate-50 px-3 py-2;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-b from-white via-background to-secondary/20"
+  >
+    <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <header class="mb-6 card">
+        <div
+          class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <h1>Hymnarium CMS</h1>
+          <nav class="flex flex-wrap gap-1">
+            <a class="nav-link" href="{% url 'hymns:home' %}">Home</a>
+            <a class="nav-link" href="{% url 'hymns:author-list' %}">Authors</a>
+            <a class="nav-link" href="{% url 'hymns:topic-list' %}">Topics</a>
+            <a class="nav-link" href="{% url 'hymns:hymn-list' %}">Hymns</a>
+            <a class="nav-link" href="{% url 'hymns:hymntranslation-list' %}"
+              >Translations</a
+            >
+            <a class="nav-link" href="/admin/">Admin</a>
+          </nav>
+        </div>
+      </header>
+      <main class="card">{% block content %}{% endblock %}</main>
+    </div>
+  </body>
+</html>
