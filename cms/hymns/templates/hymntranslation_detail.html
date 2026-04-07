@@ -11,12 +11,12 @@ endblock %} {% block content %}
 </div>
 <p class="mt-4 inline-actions">
   <a class="btn-muted" href="{% url 'hymns:hymntranslation-update' object.pk %}"
-    >Edit</a
+    >{% include "includes/icon.html" with icon="edit" %} Edit</a
   >
   <a
     class="btn-danger"
     href="{% url 'hymns:hymntranslation-delete' object.pk %}"
-    >Delete</a
+    >{% include "includes/icon.html" with icon="delete" %} Delete</a
   >
 </p>
 {% endblock %}

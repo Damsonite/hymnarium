@@ -13,13 +13,37 @@ endblock %} {% block content %}
   <p class="detail-item">
     <strong>Verse:</strong> {{ object.verse|default:"-" }}
   </p>
-  <p class="detail-item"><strong>Has track:</strong> {{ object.has_track }}</p>
-  <p class="detail-item"><strong>Has demo:</strong> {{ object.has_demo }}</p>
+  <p class="detail-item">
+    <strong>Has track:</strong>
+    {% if object.has_track %}
+    <span class="badge-track">
+      {% include "includes/icon.html" with icon="track" %} Track
+    </span>
+    {% else %}
+    <span class="badge-muted">
+      {% include "includes/icon.html" with icon="check" %} No
+    </span>
+    {% endif %}
+  </p>
+  <p class="detail-item">
+    <strong>Has demo:</strong>
+    {% if object.has_demo %}
+    <span class="badge-demo">
+      {% include "includes/icon.html" with icon="demo" %} Demo
+    </span>
+    {% else %}
+    <span class="badge-muted">
+      {% include "includes/icon.html" with icon="check" %} No
+    </span>
+    {% endif %}
+  </p>
 </div>
 <p class="mt-4 inline-actions">
-  <a class="btn-muted" href="{% url 'hymns:hymn-update' object.pk %}">Edit</a>
+  <a class="btn-muted" href="{% url 'hymns:hymn-update' object.pk %}">
+    {% include "includes/icon.html" with icon="edit" %} Edit
+  </a>
   <a class="btn-danger" href="{% url 'hymns:hymn-delete' object.pk %}"
-    >Delete</a
+    >{% include "includes/icon.html" with icon="delete" %} Delete</a
   >
 </p>
 {% endblock %}

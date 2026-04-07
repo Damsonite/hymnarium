@@ -8,6 +8,13 @@ from django.views.generic import (
     DeleteView,
 )
 
+from .forms import (
+    AuthorForm,
+    HymnCreateForm,
+    HymnTranslationForm,
+    HymnUpdateForm,
+    TopicForm,
+)
 from .models import Author, Topic, Hymn, HymnTranslation
 
 
@@ -27,14 +34,14 @@ class AuthorDetailView(DetailView):
 
 class AuthorCreateView(CreateView):
     model = Author
-    fields = ["name"]
+    form_class = AuthorForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:author-list")
 
 
 class AuthorUpdateView(UpdateView):
     model = Author
-    fields = ["name"]
+    form_class = AuthorForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:author-list")
 
@@ -57,14 +64,14 @@ class TopicDetailView(DetailView):
 
 class TopicCreateView(CreateView):
     model = Topic
-    fields = ["name"]
+    form_class = TopicForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:topic-list")
 
 
 class TopicUpdateView(UpdateView):
     model = Topic
-    fields = ["name"]
+    form_class = TopicForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:topic-list")
 
@@ -87,14 +94,14 @@ class HymnDetailView(DetailView):
 
 class HymnCreateView(CreateView):
     model = Hymn
-    fields = ["id", "author", "topics", "verse", "has_track", "has_demo"]
+    form_class = HymnCreateForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:hymn-list")
 
 
 class HymnUpdateView(UpdateView):
     model = Hymn
-    fields = ["author", "topics", "verse", "has_track", "has_demo"]
+    form_class = HymnUpdateForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:hymn-list")
 
@@ -117,14 +124,14 @@ class HymnTranslationDetailView(DetailView):
 
 class HymnTranslationCreateView(CreateView):
     model = HymnTranslation
-    fields = ["hymn", "language", "title", "text"]
+    form_class = HymnTranslationForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:hymntranslation-list")
 
 
 class HymnTranslationUpdateView(UpdateView):
     model = HymnTranslation
-    fields = ["hymn", "language", "title", "text"]
+    form_class = HymnTranslationForm
     template_name = "form.html"
     success_url = reverse_lazy("hymns:hymntranslation-list")
 

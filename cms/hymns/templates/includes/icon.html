@@ -1,0 +1,35 @@
+{% if icon == "author" or icon == "authors" %}
+<i aria-hidden="true" class="fa-solid fa-user fa-fw text-base"></i>
+{% elif icon == "topic" or icon == "topics" %}
+<i aria-hidden="true" class="fa-solid fa-tag fa-fw text-base"></i>
+{% elif icon == "hymn" or icon == "hymns" %}
+<i aria-hidden="true" class="fa-solid fa-music fa-fw text-base"></i>
+{% elif icon == "translation" or icon == "translations" %}
+<i aria-hidden="true" class="fa-solid fa-language fa-fw text-base"></i>
+{% elif icon == "language" %}
+<i aria-hidden="true" class="fa-solid fa-globe fa-fw text-base"></i>
+{% elif icon == "verse" or icon == "text" %}
+<i aria-hidden="true" class="fa-solid fa-align-left fa-fw text-base"></i>
+{% elif icon == "track" %}
+<i aria-hidden="true" class="fa-solid fa-compact-disc fa-fw text-base"></i>
+{% elif icon == "demo" %}
+<i aria-hidden="true" class="fa-solid fa-circle-play fa-fw text-base"></i>
+{% elif icon == "check" %}
+<i aria-hidden="true" class="fa-solid fa-circle-check fa-fw text-base"></i>
+{% elif icon == "plus" %}
+<i aria-hidden="true" class="fa-solid fa-plus fa-fw text-base"></i>
+{% elif icon == "edit" %}
+<i aria-hidden="true" class="fa-solid fa-pen-to-square fa-fw text-base"></i>
+{% elif icon == "delete" %}
+<i aria-hidden="true" class="fa-solid fa-trash-can fa-fw text-base"></i>
+{% elif icon == "id" %}
+<i aria-hidden="true" class="fa-solid fa-hashtag fa-fw text-base"></i>
+{% elif icon == "name" %}
+<i aria-hidden="true" class="fa-solid fa-signature fa-fw text-base"></i>
+{% elif icon == "actions" %}
+<i aria-hidden="true" class="fa-solid fa-gears fa-fw text-base"></i>
+{% elif icon == "title" %}
+<i aria-hidden="true" class="fa-solid fa-heading fa-fw text-base"></i>
+{% else %}
+<i aria-hidden="true" class="fa-solid fa-circle-question fa-fw text-base"></i>
+{% endif %}

@@ -1,9 +1,66 @@
-{% extends "base.html" %} {% block title %}Form | Hymnarium CMS{% endblock %}
-{%block content %}
-<h2>{% if object %}Edit{% else %}Create{% endif %} Entry</h2>
-<form class="mt-4" method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <div class="inline-actions">
+{% extends "base.html" %}
+{% block title %}Form | Hymnarium CMS{% endblock %}
+{% block content %}
+<div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+  <div>
+    <p class="section-label">Content editor</p>
+    <h2>{% if object %}Edit{% else %}Create{% endif %} entry</h2>
+  </div>
+</div>
+
+<form class="mt-6 space-y-4" method="post">
+  {% csrf_token %}
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+  <div
+    class="rounded-xl border border-danger/20 bg-danger/5 px-4 py-3 text-sm text-danger"
+  >
+    {{ form.non_field_errors }}
+  </div>
+  {% endif %}
+
+  <div class="space-y-4">
+    {% for field in form.visible_fields %}
+    <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm">
+      <div class="flex items-start gap-3">
+        <div class="icon-badge mt-0.5 shrink-0">
+          {% include "includes/icon.html" with icon=field.name %}
+        </div>
+        <div class="min-w-0 flex-1">
+          {% if field.field.widget.input_type == "checkbox" %}
+          <label
+            for="{{ field.id_for_label }}"
+            class="flex cursor-pointer items-center gap-3 text-sm font-medium text-text"
+          >
+            {{ field }}
+            <span>{{ field.label }}</span>
+          </label>
+          <p class="mt-1 text-xs text-muted">
+            Toggle this when the hymn has a track or a demo.
+          </p>
+          {% else %}
+          <label
+            for="{{ field.id_for_label }}"
+            class="text-sm font-medium text-text"
+          >
+            {{ field.label }}
+          </label>
+          <div class="mt-2">{{ field }}</div>
+          {% endif %} {% if field.help_text %}
+          <p class="mt-1 text-xs text-muted">{{ field.help_text }}</p>
+          {% endif %} {% for error in field.errors %}
+          <p class="mt-1 text-xs font-medium text-danger">{{ error }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="inline-actions pt-2">
     <button class="btn-primary" type="submit">Save</button>
     <a class="btn-muted" href="javascript:history.back()">Cancel</a>
   </div>

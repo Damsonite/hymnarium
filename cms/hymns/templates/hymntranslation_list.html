@@ -2,18 +2,18 @@
 {%endblock %} {% block content %}
 <div class="flex flex-wrap items-center justify-between gap-3">
   <h2>Hymn Translations</h2>
-  <a class="btn-primary" href="{% url 'hymns:hymntranslation-create' %}"
-    >Create Translation</a
-  >
+  <a class="btn-primary" href="{% url 'hymns:hymntranslation-create' %}">
+    {% include "includes/icon.html" with icon="plus" %} Create Translation
+  </a>
 </div>
 <table class="data-table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Hymn</th>
-      <th>Language</th>
-      <th>Title</th>
-      <th>Actions</th>
+      <th>{% include "includes/icon.html" with icon="id" %} ID</th>
+      <th>{% include "includes/icon.html" with icon="hymn" %} Hymn</th>
+      <th>{% include "includes/icon.html" with icon="language" %} Language</th>
+      <th>{% include "includes/icon.html" with icon="title" %} Title</th>
+      <th>{% include "includes/icon.html" with icon="actions" %} Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -34,12 +34,12 @@
           <a
             class="btn-muted"
             href="{% url 'hymns:hymntranslation-update' translation.pk %}"
-            >Edit</a
+            >{% include "includes/icon.html" with icon="edit" %} Edit</a
           >
           <a
             class="btn-danger"
             href="{% url 'hymns:hymntranslation-delete' translation.pk %}"
-            >Delete</a
+            >{% include "includes/icon.html" with icon="delete" %} Delete</a
           >
         </div>
       </td>

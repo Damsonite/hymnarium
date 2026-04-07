@@ -2,16 +2,16 @@
 {% block content %}
 <div class="flex flex-wrap items-center justify-between gap-3">
   <h2>Authors</h2>
-  <a class="btn-primary" href="{% url 'hymns:author-create' %}"
-    >Create Author</a
-  >
+  <a class="btn-primary" href="{% url 'hymns:author-create' %}">
+    {% include "includes/icon.html" with icon="plus" %} Create Author
+  </a>
 </div>
 <table class="data-table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Actions</th>
+      <th>{% include "includes/icon.html" with icon="id" %} ID</th>
+      <th>{% include "includes/icon.html" with icon="name" %} Name</th>
+      <th>{% include "includes/icon.html" with icon="actions" %} Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -26,10 +26,10 @@
       <td>
         <div class="inline-actions">
           <a class="btn-muted" href="{% url 'hymns:author-update' author.pk %}"
-            >Edit</a
+            >{% include "includes/icon.html" with icon="edit" %} Edit</a
           >
           <a class="btn-danger" href="{% url 'hymns:author-delete' author.pk %}"
-            >Delete</a
+            >{% include "includes/icon.html" with icon="delete" %} Delete</a
           >
         </div>
       </td>

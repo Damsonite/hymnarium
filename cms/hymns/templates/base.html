@@ -10,6 +10,11 @@
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -50,6 +55,9 @@
         a {
           @apply transition-colors duration-150;
         }
+        i[class^="fa-"] {
+          @apply leading-none;
+        }
         input[type="text"],
         input[type="number"],
         input[type="email"],
@@ -73,6 +81,9 @@
         select {
           @apply max-w-full sm:max-w-md;
         }
+        input[type="checkbox"] {
+          @apply h-4 w-4 rounded border-slate-300 text-primary focus:ring-2 focus:ring-primary/20;
+        }
         textarea {
           @apply min-h-28 max-w-full sm:max-w-3xl;
         }
@@ -88,7 +99,7 @@
           @apply rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm;
         }
         .btn {
-          @apply inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium;
+          @apply inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium;
         }
         .btn-primary {
           @apply btn bg-primary text-white hover:bg-primary/90;
@@ -98,6 +109,24 @@
         }
         .btn-muted {
           @apply btn bg-surface text-text hover:bg-secondary/50;
+        }
+        .badge {
+          @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium;
+        }
+        .badge-track {
+          @apply badge bg-success/10 text-success;
+        }
+        .badge-demo {
+          @apply badge bg-accent/10 text-accent;
+        }
+        .badge-muted {
+          @apply badge bg-slate-100 text-muted;
+        }
+        .icon-badge {
+          @apply flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary;
+        }
+        .section-label {
+          @apply text-xs font-semibold uppercase tracking-[0.22em] text-muted;
         }
         .text-link {
           @apply text-primary hover:text-accent;

@@ -1,34 +1,72 @@
 {% extends "base.html" %} {% block title %}Home | Hymnarium CMS{% endblock %}
 {%block content %}
-<h2>Manage Content</h2>
-<ul class="mt-4 grid gap-3 sm:grid-cols-2">
+<div class="flex flex-col gap-2">
+  <p class="section-label">Dashboard</p>
+  <h2>Manage Content</h2>
+  <p class="max-w-2xl text-sm text-muted">
+    Edit the content of the hymnarium by managing authors, topics, hymns, and
+    translations.
+  </p>
+</div>
+
+<ul class="mt-6 grid gap-4 sm:grid-cols-2">
   <li>
     <a
-      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      class="flex h-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md"
       href="{% url 'hymns:author-list' %}"
-      >Authors</a
     >
+      <span class="icon-badge">
+        {% include "includes/icon.html" with icon="authors" %}
+      </span>
+      <span>
+        <span class="block font-medium text-text">Authors</span>
+        <span class="block text-xs text-muted">Manage contributor names</span>
+      </span>
+    </a>
   </li>
   <li>
     <a
-      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      class="flex h-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md"
       href="{% url 'hymns:topic-list' %}"
-      >Topics</a
     >
+      <span class="icon-badge">
+        {% include "includes/icon.html" with icon="topics" %}
+      </span>
+      <span>
+        <span class="block font-medium text-text">Topics</span>
+        <span class="block text-xs text-muted">Organize hymn categories</span>
+      </span>
+    </a>
   </li>
   <li>
     <a
-      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      class="flex h-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md"
       href="{% url 'hymns:hymn-list' %}"
-      >Hymns</a
     >
+      <span class="icon-badge">
+        {% include "includes/icon.html" with icon="hymns" %}
+      </span>
+      <span>
+        <span class="block font-medium text-text">Hymns</span>
+        <span class="block text-xs text-muted"
+          >Titles, verses, and track flags</span
+        >
+      </span>
+    </a>
   </li>
   <li>
     <a
-      class="block rounded-lg border border-slate-200 bg-white p-4 text-link"
+      class="flex h-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md"
       href="{% url 'hymns:hymntranslation-list' %}"
-      >Hymn Translations</a
     >
+      <span class="icon-badge">
+        {% include "includes/icon.html" with icon="translations" %}
+      </span>
+      <span>
+        <span class="block font-medium text-text">Translations</span>
+        <span class="block text-xs text-muted">Language and text entries</span>
+      </span>
+    </a>
   </li>
 </ul>
 {% endblock %}
