@@ -1,0 +1,12 @@
+{% extends "hymns/base.html" %}
+
+{% block title %}Topic Detail | Hymnarium CMS{% endblock %}
+
+{% block content %}
+<h2>Topic: {{ object.name }}</h2>
+<p><strong>ID:</strong> {{ object.id }}</p>
+<p>
+    <a href="{% url 'hymns:topic-update' object.pk %}">Edit</a>
+    <a href="{% url 'hymns:topic-delete' object.pk %}">Delete</a>
+</p>
+{% endblock %}

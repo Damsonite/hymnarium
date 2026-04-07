@@ -33,4 +33,9 @@ android
 *.aac
 audioFiles.*
 
+# IDE configurations
 .idea/
+
+# Python
+venv/
+__pycache__/

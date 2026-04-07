@@ -1,0 +1,25 @@
+{% extends "hymns/base.html" %}
+
+{% block title %}Hymns | Hymnarium CMS{% endblock %}
+
+{% block content %}
+<h2>Hymns</h2>
+<p><a href="{% url 'hymns:hymn-create' %}">Create Hymn</a></p>
+<table>
+    <tr><th>ID</th><th>Author</th><th>Track</th><th>Demo</th><th>Actions</th></tr>
+    {% for hymn in object_list %}
+    <tr>
+        <td><a href="{% url 'hymns:hymn-detail' hymn.pk %}">{{ hymn.id }}</a></td>
+        <td>{{ hymn.author|default:"-" }}</td>
+        <td>{{ hymn.has_track }}</td>
+        <td>{{ hymn.has_demo }}</td>
+        <td class="actions">
+            <a href="{% url 'hymns:hymn-update' hymn.pk %}">Edit</a>
+            <a href="{% url 'hymns:hymn-delete' hymn.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No hymns found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

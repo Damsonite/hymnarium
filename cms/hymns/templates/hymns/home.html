@@ -1,0 +1,13 @@
+{% extends "hymns/base.html" %}
+
+{% block title %}Home | Hymnarium CMS{% endblock %}
+
+{% block content %}
+<h2>Manage Content</h2>
+<ul>
+    <li><a href="{% url 'hymns:author-list' %}">Authors</a></li>
+    <li><a href="{% url 'hymns:topic-list' %}">Topics</a></li>
+    <li><a href="{% url 'hymns:hymn-list' %}">Hymns</a></li>
+    <li><a href="{% url 'hymns:hymntranslation-list' %}">Hymn Translations</a></li>
+</ul>
+{% endblock %}
