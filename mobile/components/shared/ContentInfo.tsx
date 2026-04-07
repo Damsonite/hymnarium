@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 
-import BoxArt from '~/components/shared/BoxArt';
-import Marquee from '~/components/shared/Marquee';
+import { BoxArt } from '~/components/library';
+import { Marquee } from '~/components/shared';
 
 interface ContentInfoProps {
   id?: number;
@@ -12,7 +12,7 @@ interface ContentInfoProps {
 export default function ContentInfo({ id, title, subtitle }: ContentInfoProps) {
   return (
     <View className="mx-4 flex-1 flex-row items-center gap-2">
-      <BoxArt iconName="music" />
+      <BoxArt />
 
       <View className="ml-1 flex-1 gap-1 overflow-hidden">
         <Marquee

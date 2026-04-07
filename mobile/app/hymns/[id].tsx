@@ -1,64 +1,63 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { ScrollView, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native';
 
-import FavoriteButton from '~/components/hymns/FavoriteButton';
-import LanguageButton from '~/components/hymns/LanguageButton';
-import Player from '~/components/hymns/Player';
-import ContentInfo from '~/components/shared/ContentInfo';
-import Error from '~/components/shared/Error';
-import Loading from '~/components/shared/Loading';
-import useHymn from '~/hooks/useHymn';
-import { useLanguageStore } from '~/store/language';
-import { formatVerse } from '~/utils/verse';
+import { Player } from '~/components/library';
+import { ErrorDialog, LanguageButton, Loading } from '~/components/shared';
+import { useHymn } from '~/hooks';
+import { colors, globalStyles, withOpacity } from '~/styles';
+import { formatVerse } from '~/utils';
 
 export default function HymnScreen() {
+  const theme = useColorScheme() ?? 'light';
   const { id } = useLocalSearchParams();
-  const hymnId = Number(id);
-  const { data, isLoading, error } = useHymn(hymnId);
-  const insets = useSafeAreaInsets();
-  const { language } = useLanguageStore();
+  const { hymn, loading, error, setError } = useHymn(Number(id));
 
-  if (isLoading) return <Loading />;
-
-  if (error || !data) {
-    return <Error title="There was an error loading the hymn" message={error?.message} />;
-  }
+  const styles = createStyles(theme);
 
   return (
-    <View className="flex-1">
+    <>
       <Stack.Screen
         options={{
-          title: data.title,
+          title: hymn?.title ?? 'Hymn',
+          headerTitleStyle: globalStyles.h2,
           headerRight: () => <LanguageButton />,
         }}
       />
 
-      <ScrollView className="p-6" contentContainerClassName="pb-16">
-        {data.verse && (
-          <Text className="mb-4 text-right font-lxmedium text-text opacity-60">
-            {formatVerse(data.verse, language)}
-          </Text>
-        )}
+      <ErrorDialog title="There was an error loading the hymn" error={error} setError={setError} />
 
-        <Text
-          className="font-lxregular text-3xl text-text"
-          style={{
-            lineHeight: 36,
-          }}>
-          {data.text}
-        </Text>
-      </ScrollView>
+      {loading ? (
+        <Loading />
+      ) : (
+        <View style={{ flex: 1 }}>
+          <ScrollView contentContainerStyle={styles.scrollview}>
+            {hymn?.verse && <Text style={styles.verse}>{formatVerse(hymn?.verse)}</Text>}
 
-      <View className="surface mb-2 pt-4 shadow-lg" style={{ paddingBottom: insets.bottom }}>
-        <View className="mr-3 flex-row items-center">
-          <ContentInfo id={data.id} title={data.title} subtitle={data.author_name} />
+            <Text style={styles.lyrics}>{hymn?.text}</Text>
+          </ScrollView>
 
-          <FavoriteButton hymnId={hymnId} />
+          <Player hymn={hymn} />
         </View>
-
-        <Player id={hymnId} />
-      </View>
-    </View>
+      )}
+    </>
   );
 }
+
+const createStyles = (theme: 'light' | 'dark') =>
+  StyleSheet.create({
+    scrollview: {
+      padding: 24,
+    },
+    verse: {
+      marginBottom: 16,
+      textAlign: 'right',
+      fontFamily: 'Lexend-Medium',
+      color: withOpacity(colors.text[theme], 0.6),
+    },
+    lyrics: {
+      fontFamily: 'Lexend-Regular',
+      fontSize: 24,
+      lineHeight: 36,
+      color: colors.text[theme],
+    },
+  });

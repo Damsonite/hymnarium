@@ -1,32 +1,6 @@
-export type Language = 'en' | 'es';
+import { Color } from './styles';
 
 export type Theme = 'light' | 'dark';
-
-export interface AppConfig {
-  app: {
-    name: string;
-    version: string;
-    year?: number;
-    author?: string;
-  };
-  database: {
-    name: string;
-    assetSource: { assetId: any };
-  };
-  languages: {
-    value: Language;
-    label: string;
-  }[];
-  defaultLanguage: Language;
-  links: {
-    repository?: string;
-    social?: {
-      label: string;
-      icon: string;
-      url: string;
-    }[];
-  };
-}
 
 export interface Hymn {
   id: number;
@@ -51,4 +25,9 @@ export interface Topic {
   id: number;
   name: string;
   hymn_count: number;
+}
+
+export interface Tag {
+  label: string;
+  color: Color;
 }

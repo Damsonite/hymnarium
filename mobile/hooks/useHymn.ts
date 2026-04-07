@@ -1,34 +1,39 @@
 import { useSQLiteContext } from 'expo-sqlite';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { getHymn } from '~/db/hymns';
-import { useLanguageStore } from '~/store/language';
+import { useLanguageStore } from '~/store';
 import { Hymn } from '~/types';
 
-export default function useHymn(id: number) {
+export const useHymn = (id: number) => {
   const db = useSQLiteContext();
   const { language } = useLanguageStore();
 
-  const [data, setData] = useState<Hymn | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [hymn, setHymn] = useState<Hymn | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
 
+    try {
       const result = await getHymn(db, id, language);
 
-      if (result === null) {
-        setError(new Error(`Hymn ${id} not found or failed to load`));
+      if (result) {
+        setHymn(result);
       }
-
-      setData(result);
-      setIsLoading(false);
-    };
-    fetchData();
+    } catch (e: any) {
+      setError(e.message);
+      setHymn(null);
+    } finally {
+      setLoading(false);
+    }
   }, [db, id, language]);
 
-  return { data, isLoading, error };
-}
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { hymn, loading, error, setError };
+};

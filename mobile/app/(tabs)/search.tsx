@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View } from 'react-native';
-import HymnList from '~/components/hymns/HymnList';
+import HymnList from '~/components/library/HymnList';
 
 import SearchBar from '~/components/search/SearchBar';
 

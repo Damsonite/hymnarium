@@ -1,46 +1,70 @@
-import { Stack } from 'expo-router';
-import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome';
+import { Tabs } from 'expo-router';
+import { useColorScheme } from 'react-native';
 
-import { TabButton } from '~/components/shared/TabButton';
-import { appConfig } from '~/config/appConfig';
+import { colors, withOpacity } from '~/styles';
 
 export default function TabsLayout() {
-  const insets = useSafeAreaInsets();
+  const theme = useColorScheme() ?? 'light';
+
+  const getTintColor = (focused: boolean) => {
+    return focused ? colors.primary[theme] : colors.muted[theme];
+  };
 
   return (
-    <>
-      <Stack.Screen
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          borderColor: withOpacity(colors.muted[theme], 0.2),
+          backgroundColor: colors.surface[theme],
+        },
+        tabBarLabelStyle: {
+          fontFamily: 'Lexend-Medium',
+          fontSize: 12,
+        },
+        tabBarActiveTintColor: getTintColor(true),
+        tabBarInactiveTintColor: getTintColor(false),
+      }}>
+      <Tabs.Screen
+        name="(library)"
         options={{
-          title: appConfig.app.name,
-          headerTitleStyle: { fontFamily: 'Lexend-SemiBold', fontSize: 20 },
+          title: 'Library',
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome6 name="book" size={24} color={getTintColor(focused)} />
+          ),
         }}
       />
 
-      <Tabs>
-        <TabSlot />
-        <TabList
-          className="surface"
-          style={{
-            paddingBottom: insets.bottom,
-          }}>
-          <TabTrigger name="(library)" href="/" asChild>
-            <TabButton icon="list" label="Library" />
-          </TabTrigger>
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: 'Search',
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome6 name="search" size={24} color={getTintColor(focused)} />
+          ),
+        }}
+      />
 
-          <TabTrigger name="search" href="/search" asChild>
-            <TabButton icon="search" label="Search" />
-          </TabTrigger>
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: 'Favorites',
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome6 name="heart" size={24} color={getTintColor(focused)} />
+          ),
+        }}
+      />
 
-          <TabTrigger name="favorites" href="/favorites" asChild>
-            <TabButton icon="heart" label="Favorites" />
-          </TabTrigger>
-
-          <TabTrigger name="settings" href="/settings" asChild>
-            <TabButton icon="cog" label="Settings" />
-          </TabTrigger>
-        </TabList>
-      </Tabs>
-    </>
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome6 name="cog" size={24} color={getTintColor(focused)} />
+          ),
+        }}
+      />
+    </Tabs>
   );
 }

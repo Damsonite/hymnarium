@@ -1,16 +1,14 @@
-import { useColorScheme } from 'nativewind';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, useColorScheme, View } from 'react-native';
 
-import { colors } from '~/utils/color';
+import { colors } from '~/styles';
 
-export default function Loading({ fullscreen = false }: { fullscreen?: boolean }) {
-  const { colorScheme } = useColorScheme();
-  const mode = colorScheme ?? 'light';
+export const Loading = ({ fullscreen = false }: { fullscreen?: boolean }) => {
+  const theme = useColorScheme() ?? 'light';
 
   const LoadingIndicator = () => {
     return (
       <View className="size-20 items-center justify-center">
-        <ActivityIndicator size="large" color={colors[mode].primary} />
+        <ActivityIndicator size="large" color={colors.primary[theme]} />
       </View>
     );
   };
@@ -24,4 +22,4 @@ export default function Loading({ fullscreen = false }: { fullscreen?: boolean }
   }
 
   return <LoadingIndicator />;
-}
+};

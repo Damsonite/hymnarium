@@ -1,15 +1,15 @@
 import { Marquee as RNMarquee } from '@animatereactnative/marquee';
 import { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, TextStyle, View } from 'react-native';
 
 interface MarqueeProps {
   text: string;
-  className?: string;
   speed?: number;
   spacing?: number;
+  style: TextStyle;
 }
 
-export default function Marquee({ text, className = '', speed = 0.5, spacing = 40 }: MarqueeProps) {
+export const Marquee = ({ text, speed = 0.5, spacing = 40, style }: MarqueeProps) => {
   const [textWidth, setTextWidth] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
   const [shouldUseMarquee, setShouldUseMarquee] = useState(false);
@@ -25,7 +25,13 @@ export default function Marquee({ text, className = '', speed = 0.5, spacing = 4
     <>
       {/* Hidden text for measuring - positioned off-screen */}
       <Text
-        className={`absolute -top-96 ${className}`}
+        style={{
+          position: 'absolute',
+          opacity: 0,
+          left: -9999,
+          top: -9999,
+          ...style,
+        }}
         onLayout={(event) => {
           const { width } = event.nativeEvent.layout;
           setTextWidth(width);
@@ -41,14 +47,14 @@ export default function Marquee({ text, className = '', speed = 0.5, spacing = 4
         }}>
         {shouldUseMarquee && textWidth > 0 ? (
           <RNMarquee speed={speed} spacing={spacing}>
-            <Text className={className}>{text}</Text>
+            <Text style={style}>{text}</Text>
           </RNMarquee>
         ) : (
-          <Text className={className} numberOfLines={1}>
+          <Text style={style} numberOfLines={1}>
             {text}
           </Text>
         )}
       </View>
     </>
   );
-}
+};

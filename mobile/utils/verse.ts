@@ -1,5 +1,5 @@
-import { appConfig } from '~/config/appConfig';
-import { Language } from '~/types';
+import { Language } from '~/config';
+import { useLanguageStore } from '~/store';
 
 type BookCode = 'Ps' | 'Mat' | 'John' | 'Acts' | 'Rom' | 'Phil' | '1John';
 
@@ -25,10 +25,9 @@ const BOOK_NAMES: Record<Language, Record<BookCode, string>> = {
   },
 };
 
-export function formatVerse(
-  verseRef: string,
-  language: Language = appConfig.defaultLanguage
-): string {
+export function formatVerse(verseRef: string): string {
+  const { language } = useLanguageStore();
+
   const parts = verseRef.split('.');
 
   if (parts.length < 3) {

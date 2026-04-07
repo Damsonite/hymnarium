@@ -1,17 +1,17 @@
 import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 
-import BaseList from '~/components/shared/BaseList';
-import VideoItem from '~/components/videos/VideoItem';
+import { BaseList } from '~/components/shared';
 import { getVideos } from '~/db/videos';
-import { useLanguageStore } from '~/store/language';
+import { useLanguageStore } from '~/store';
 import { Video } from '~/types';
+import { VideoItem } from './VideoItem';
 
 interface VideoListProps {
   isAscending?: boolean;
 }
 
-export default function VideoList({ isAscending }: VideoListProps) {
+export const VideoList = ({ isAscending }: VideoListProps) => {
   const db = useSQLiteContext();
   const [data, setData] = useState<Video[]>([]);
   const { language } = useLanguageStore();
@@ -33,4 +33,4 @@ export default function VideoList({ isAscending }: VideoListProps) {
       emptyMessage="No videos available"
     />
   );
-}
+};

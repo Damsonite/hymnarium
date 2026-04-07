@@ -1,8 +1,9 @@
 import { FlashList, ListRenderItemInfo } from '@shopify/flash-list';
 import { ReactElement } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 
-import Loading from '~/components/shared/Loading';
+import { colors, globalStyles } from '~/styles';
+import { Loading } from './Loading';
 
 interface BaseListProps<T> {
   data: T[];
@@ -12,17 +13,20 @@ interface BaseListProps<T> {
   loading?: boolean;
 }
 
-export default function BaseList<T>({
+export const BaseList = <T,>({
   data,
   renderItem,
   numColumns = 1,
   emptyMessage = 'No items available',
   loading = false,
-}: BaseListProps<T>) {
+}: BaseListProps<T>) => {
+  const theme = useColorScheme() ?? 'light';
+  const styles = createStyles(theme);
+
   const ListEmpty = () => {
     return (
-      <View className="flex-1 items-center justify-center p-4">
-        <Text className="text-center font-lxregular text-muted">{emptyMessage}</Text>
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyMessage}>{emptyMessage}</Text>
       </View>
     );
   };
@@ -30,12 +34,11 @@ export default function BaseList<T>({
   if (loading) return <Loading fullscreen />;
 
   return (
-    <View className="min-h-48 flex-1">
+    <View style={styles.container}>
       <FlashList
         data={data}
         renderItem={renderItem}
-        estimatedItemSize={64}
-        contentContainerClassName="pt-4 pb-8"
+        contentContainerStyle={styles.content}
         numColumns={numColumns}
         keyboardDismissMode="on-drag"
         ListEmptyComponent={ListEmpty}
@@ -43,4 +46,28 @@ export default function BaseList<T>({
       />
     </View>
   );
-}
+};
+
+const createStyles = (theme: 'light' | 'dark') =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      minHeight: 192,
+    },
+    content: {
+      paddingTop: 16,
+      paddingBottom: 32,
+    },
+    emptyContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 16,
+    },
+    emptyMessage: StyleSheet.flatten([
+      globalStyles.body,
+      {
+        color: colors.muted[theme],
+      },
+    ]),
+  });

@@ -1,12 +1,12 @@
 import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 
-import BaseList from '~/components/shared/BaseList';
-import TopicItem from '~/components/topics/TopicItem';
+import { BaseList } from '~/components/shared';
 import { getTopics } from '~/db/topics';
 import { Topic } from '~/types';
+import { TopicItem } from './TopicItem';
 
-export default function TopicList() {
+export const TopicList = () => {
   const db = useSQLiteContext();
   const [data, setData] = useState<Topic[]>([]);
 
@@ -28,4 +28,4 @@ export default function TopicList() {
       numColumns={2}
     />
   );
-}
+};

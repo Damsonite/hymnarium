@@ -1,9 +1,7 @@
 import { SQLiteDatabase } from 'expo-sqlite';
-import { appConfig } from '~/config/appConfig';
 
-import { Language, Video } from '~/types';
-
-const defaultLanguage = appConfig.defaultLanguage;
+import { defaultLanguage, Language } from '~/config';
+import { Video } from '~/types';
 
 export const getVideos = async (
   db: SQLiteDatabase,

@@ -1,12 +1,11 @@
 import { useSQLiteContext } from 'expo-sqlite';
 import { useEffect, useState } from 'react';
 
-import HymnItem from '~/components/hymns/HymnItem';
-import BaseList from '~/components/shared/BaseList';
+import { BaseList } from '~/components/shared';
 import { getHymns } from '~/db/hymns';
-import { useFavoritesStore } from '~/store/favorites';
-import { useLanguageStore } from '~/store/language';
+import { useFavoritesStore, useLanguageStore } from '~/store';
 import { Hymn } from '~/types';
+import { HymnItem } from './HymnItem';
 
 interface HymnListProps {
   isAscending?: boolean;
@@ -15,12 +14,7 @@ interface HymnListProps {
   query?: string;
 }
 
-export default function HymnList({
-  isAscending,
-  onlyFavorites = false,
-  topicId,
-  query,
-}: HymnListProps) {
+export const HymnList = ({ isAscending, onlyFavorites = false, topicId, query }: HymnListProps) => {
   const db = useSQLiteContext();
   const { favoritesIds } = useFavoritesStore();
   const { language } = useLanguageStore();
@@ -58,4 +52,4 @@ export default function HymnList({
       loading={loading}
     />
   );
-}
+};

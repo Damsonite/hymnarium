@@ -1,14 +1,12 @@
 import MultiSelect from '~/components/settings/MultiSelect';
 import SettingsOption from '~/components/settings/SettingsOption';
-import { appConfig } from '~/config/appConfig';
-import { useLanguageStore } from '~/store/language';
-import { Language } from '~/types';
+import { Language, languages } from '~/config';
+import { useLanguageStore } from '~/store/languageStore';
 
 export default function LanguageSelector() {
   const { language, setLanguage } = useLanguageStore();
 
-  const languageOptions = appConfig.languages;
-  const currentOption = languageOptions.find((option) => option.value === language);
+  const currentOption = languages.find((option) => option.value === language);
 
   const handleLanguageSelect = (selectedLanguageValue: string) => {
     setLanguage(selectedLanguageValue as Language);
@@ -18,7 +16,7 @@ export default function LanguageSelector() {
     <SettingsOption label="Content language">
       <MultiSelect
         currentOption={currentOption}
-        options={languageOptions}
+        options={languages}
         handleOptionSelect={handleLanguageSelect}
       />
     </SettingsOption>

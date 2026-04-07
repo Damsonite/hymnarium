@@ -1,34 +1,31 @@
-import { useColorScheme } from 'nativewind';
-import { TouchableOpacity } from 'react-native';
+import { Pressable, useColorScheme } from 'react-native';
 
-import Icon from '~/components/shared/Icon';
-import { colors } from '~/utils/color';
+import { colors } from '~/styles';
 
 interface PlayerButtonProps {
-  icon: string;
   onPress?: () => void;
+  icon: React.ReactElement;
   shaped?: boolean;
   active?: boolean;
 }
 
 export default function PlayerButton({
-  icon,
   onPress,
+  icon,
   shaped = false,
   active = true,
 }: PlayerButtonProps) {
-  const { colorScheme } = useColorScheme();
-  const mode = colorScheme ?? 'light';
+  const theme = useColorScheme() ?? 'light';
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       className="size-20 items-center justify-center rounded-full bg-text pl-1"
       style={{
-        backgroundColor: shaped ? colors[mode].text : undefined,
+        backgroundColor: shaped ? colors.text[theme] : undefined,
         opacity: active ? 1 : 0.4,
       }}>
-      <Icon name={icon} color={shaped ? 'background' : 'text'} />
-    </TouchableOpacity>
+      {icon}
+    </Pressable>
   );
 }

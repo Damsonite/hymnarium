@@ -175,8 +175,8 @@ This project is designed as a reusable template. To customize it for your own hy
 
    ```ts
    export const demos = {
-     '1': require('../assets/audio/demos/hymn1.mp3'),
-     '2': require('../assets/audio/demos/hymn2.mp3'),
+     "1": require("../assets/audio/demos/hymn1.mp3"),
+     "2": require("../assets/audio/demos/hymn2.mp3"),
      // Add your audio files here
    };
    ```
@@ -229,7 +229,3 @@ Thank you for your interest in contributing! Here's how you can help:
 - Write meaningful commit messages
 - Test your changes on multiple platforms when possible
 - Update documentation as needed
-
-## 📜 License
-
-This project is distributed under the MIT License. See [LICENSE](LICENSE) for more information.

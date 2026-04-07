@@ -1,9 +1,8 @@
 import Slider from '@react-native-community/slider';
-import { useColorScheme } from 'nativewind';
-import { Text, View } from 'react-native';
+import { Text, useColorScheme, View } from 'react-native';
 
-import { colors } from '~/utils/color';
-import { formatTime } from '~/utils/time';
+import { colors } from '~/styles';
+import { formatTime } from '~/utils';
 
 interface TrackBarProps {
   currentTime: number;
@@ -18,15 +17,14 @@ export default function TrackBar({
   onSlidingComplete,
   isLoading = false,
 }: TrackBarProps) {
-  const { colorScheme } = useColorScheme();
-  const mode = colorScheme ?? 'light';
+  const theme = useColorScheme() ?? 'light';
 
   return (
     <View className="mx-6 mb-2 mt-4" style={{ opacity: isLoading ? 0.6 : 1 }}>
       <Slider
-        thumbTintColor={colors[mode].primary}
-        minimumTrackTintColor={colors[mode].primary}
-        maximumTrackTintColor={colors[mode].text}
+        thumbTintColor={colors.primary[theme]}
+        minimumTrackTintColor={colors.primary[theme]}
+        maximumTrackTintColor={colors.text[theme]}
         value={isLoading ? 0 : currentTime}
         maximumValue={isLoading ? 100 : duration}
         step={0.01}

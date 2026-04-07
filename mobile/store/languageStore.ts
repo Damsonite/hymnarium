@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { appConfig } from '~/config/appConfig';
 
-import { Language } from '~/types';
+import { defaultLanguage, Language } from '~/config';
 
 export interface LanguageState {
   language: Language;
@@ -13,7 +12,7 @@ export interface LanguageState {
 export const useLanguageStore = create<LanguageState>()(
   persist(
     (set) => ({
-      language: appConfig.defaultLanguage,
+      language: defaultLanguage,
 
       setLanguage: (language: Language) =>
         set(() => ({

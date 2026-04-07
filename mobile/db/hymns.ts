@@ -1,9 +1,7 @@
 import { SQLiteDatabase } from 'expo-sqlite';
-import { appConfig } from '~/config/appConfig';
 
-import { Hymn, Language } from '~/types';
-
-const defaultLanguage = appConfig.defaultLanguage;
+import { defaultLanguage, Language } from '~/config';
+import { Hymn } from '~/types';
 
 export const getHymns = async (
   db: SQLiteDatabase,

@@ -1,8 +1,7 @@
-import { TextInput, View } from 'react-native';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { TextInput, useColorScheme, View } from 'react-native';
 
-import { useColorScheme } from 'nativewind';
-import Icon from '~/components/shared/Icon';
-import { colors } from '~/utils/color';
+import { colors } from '~/styles';
 
 interface SearchBarProps {
   query: string;
@@ -10,17 +9,16 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ query, setQuery }: SearchBarProps) {
-  const { colorScheme } = useColorScheme();
-  const mode = colorScheme ?? 'light';
+  const theme = useColorScheme() ?? 'light';
 
   return (
     <View className="h-12 flex-row items-center gap-1 rounded-2xl bg-surface px-4">
-      <Icon name="search" size={16} color="muted" />
+      <FontAwesome6 name="search" size={16} color={colors.muted[theme]} />
 
       <TextInput
         className="ml-1 flex-1 font-lxregular text-text"
         placeholder="Search by title or author..."
-        placeholderTextColor={colors[mode].muted}
+        placeholderTextColor={colors.muted[theme]}
         value={query}
         onChangeText={setQuery}
       />

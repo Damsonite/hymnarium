@@ -3,15 +3,15 @@ import { View } from 'react-native';
 
 import PlayerButton from '~/components/hymns/PlayerButton';
 import TrackBar from '~/components/hymns/TrackBar';
-import Loading from '~/components/shared/Loading';
+import { Loading } from '~/components/shared/Loading';
 import useAudio from '~/hooks/useAudio';
-import { Hymn } from '~/types/hymn';
+import { Hymn } from '~/types';
 
 interface PlayerProps {
   id: Hymn['id'];
 }
 
-export default function Player({ id }: PlayerProps) {
+export const PlayerControls = ({ id }: PlayerProps) => {
   const router = useRouter();
 
   const {
@@ -71,4 +71,4 @@ export default function Player({ id }: PlayerProps) {
       </>
     </>
   );
-}
+};

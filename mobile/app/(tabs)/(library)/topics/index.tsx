@@ -1,13 +1,10 @@
-import { View } from 'react-native';
-import SectionHeader from '~/components/shared/SectionHeader';
-import TopicList from '~/components/topics/TopicList';
+import { TopicList } from '~/components/library';
+import { ListLayout } from '~/layouts';
 
 export default function TopicsScreen() {
   return (
-    <View className="container">
-      <SectionHeader title="Hymns by topic" />
-
+    <ListLayout title="Hymn Topics">
       <TopicList />
-    </View>
+    </ListLayout>
   );
 }

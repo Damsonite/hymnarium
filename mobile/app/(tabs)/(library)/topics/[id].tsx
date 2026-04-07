@@ -1,24 +1,21 @@
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { View } from 'react-native';
 
-import HymnList from '~/components/hymns/HymnList';
-import SectionHeader from '~/components/shared/SectionHeader';
+import { HymnList } from '~/components/hymns';
+import { ListLayout } from '~/layouts';
 
 export default function TopicScreen() {
   const { id, title } = useLocalSearchParams();
   const [isAscending, setIsAscending] = useState(true);
+  const titleString = Array.isArray(title) ? title[0] : title;
 
   return (
-    <View className="container">
-      <SectionHeader
-        title={title}
-        isAscending={isAscending}
-        setIsAscending={setIsAscending}
-        showBackButton
-      />
-
+    <ListLayout
+      title={titleString ?? ''}
+      isAscending={isAscending}
+      setIsAscending={setIsAscending}
+      showBackButton>
       <HymnList topicId={Number(id)} isAscending={isAscending} />
-    </View>
+    </ListLayout>
   );
 }

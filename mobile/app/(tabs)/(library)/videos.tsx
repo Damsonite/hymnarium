@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { View } from 'react-native';
 
-import SectionHeader from '~/components/shared/SectionHeader';
-import VideoList from '~/components/videos/VideoList';
+import { VideoList } from '~/components/library';
+import { ListLayout } from '~/layouts';
 
-export default function Videos() {
+export default function VideosScreen() {
   const [isAscending, setIsAscending] = useState(false);
 
   return (
-    <View className="container">
-      <SectionHeader title="All videos" isAscending={isAscending} setIsAscending={setIsAscending} />
-
+    <ListLayout title="All videos" isAscending={isAscending} setIsAscending={setIsAscending}>
       <VideoList isAscending={isAscending} />
-    </View>
+    </ListLayout>
   );
 }
